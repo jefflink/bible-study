@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KJV Bible Study Guide</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Marked.js for Markdown rendering -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+
+  <style>
+    /* ── Design Tokens ───────────────────────────────── */
+    :root {
+      --ink:        #1a1209;
+      --parchment:  #f5edd8;
+      --parchment2: #ede0c4;
+      --cream:      #faf6ed;
+      --gold:       #b8860b;
+      --gold-light: #d4a017;
+      --gold-dim:   #8b6508;
+      --sidebar-bg: #1c1409;
+      --sidebar-w:  280px;
+      --border:     rgba(184,134,11,0.25);
+      --shadow:     0 4px 24px rgba(26,18,9,0.18);
+      --radius:     6px;
+      --trans:      0.22s ease;
+    }
+
+    /* ── Reset & Base ────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      background: var(--sidebar-bg);
+      color: var(--ink);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    /* ── Layout ──────────────────────────────────────── */
+    .layout {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ── Sidebar ─────────────────────────────────────── */
+    .sidebar {
+      width: var(--sidebar-w);
+      min-width: var(--sidebar-w);
+      background: var(--sidebar-bg);
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid rgba(184,134,11,0.2);
+      overflow: hidden;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Decorative top grain */
+    .sidebar::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    .sidebar-header {
+      padding: 28px 20px 18px;
+      border-bottom: 1px solid rgba(184,134,11,0.2);
+      flex-shrink: 0;
+    }
+
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      margin-bottom: 16px;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+    }
+
+    .logo-text {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      letter-spacing: 0.08em;
+      line-height: 1.25;
+    }
+    .logo-text span {
+      display: block;
+      font-size: 0.65rem;
+      font-weight: 400;
+      color: rgba(212,160,23,0.55);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    /* Search */
+    .search-wrap {
+      position: relative;
+    }
+    .search-input {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(184,134,11,0.25);
+      border-radius: var(--radius);
+      color: var(--parchment);
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.9rem;
+      padding: 8px 12px 8px 34px;
+      outline: none;
+      transition: border-color var(--trans), background var(--trans);
+    }
+    .search-input::placeholder { color: rgba(212,160,23,0.35); }
+    .search-input:focus {
+      border-color: rgba(184,134,11,0.6);
+      background: rgba(255,255,255,0.08);
+    }
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(212,160,23,0.45);
+      pointer-events: none;
+      font-size: 0.85rem;
+    }
+
+    /* Search results dropdown */
+    .search-results {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0; right: 0;
+      background: #231a08;
+      border: 1px solid rgba(184,134,11,0.3);
+      border-radius: var(--radius);
+      max-height: 260px;
+      overflow-y: auto;
+      z-index: 100;
+      box-shadow: var(--shadow);
+    }
+    .search-results.visible { display: block; }
+    .search-result-item {
+      padding: 9px 14px;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(184,134,11,0.1);
+      transition: background var(--trans);
+    }
+    .search-result-item:last-child { border-bottom: none; }
+    .search-result-item:hover { background: rgba(184,134,11,0.12); }
+    .search-result-title {
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.88rem;
+      color: var(--parchment);
+    }
+    .search-result-sub {
+      font-size: 0.72rem;
+      color: rgba(212,160,23,0.5);
+      letter-spacing: 0.04em;
+    }
+    .search-no-results {
+      padding: 12px 14px;
+      font-size: 0.82rem;
+      color: rgba(212,160,23,0.4);
+      font-style: italic;
+    }
+    .search-result-snippet {
+      font-size: 0.75rem;
+      color: rgba(245,237,216,0.38);
+      margin-top: 3px;
+      line-height: 1.45;
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .search-result-snippet mark {
+      background: none;
+      color: var(--gold-light);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    /* Book list */
+    .sidebar-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px 0 20px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(184,134,11,0.25) transparent;
+    }
+    .sidebar-body::-webkit-scrollbar { width: 4px; }
+    .sidebar-body::-webkit-scrollbar-track { background: transparent; }
+    .sidebar-body::-webkit-scrollbar-thumb { background: rgba(184,134,11,0.25); border-radius: 2px; }
+
+    .sidebar-section-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      color: rgba(184,134,11,0.4);
+      text-transform: uppercase;
+      padding: 12px 20px 6px;
+    }
+
+    .book-entry { }
+
+    .book-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 8px 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: rgba(245,237,216,0.75);
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.92rem;
+      text-align: left;
+      letter-spacing: 0.02em;
+      transition: color var(--trans), background var(--trans);
+      border-left: 2px solid transparent;
+    }
+    .book-btn:hover {
+      color: var(--gold-light);
+      background: rgba(184,134,11,0.07);
+      border-left-color: rgba(184,134,11,0.3);
+    }
+    .book-btn.active {
+      color: var(--gold-light);
+      background: rgba(184,134,11,0.12);
+      border-left-color: var(--gold);
+    }
+    .book-btn-arrow {
+      font-size: 0.65rem;
+      opacity: 0.5;
+      transition: transform var(--trans);
+      flex-shrink: 0;
+    }
+    .book-btn.open .book-btn-arrow { transform: rotate(90deg); opacity: 1; }
+
+    /* Chapter list */
+    .chapter-list {
+      display: none;
+      padding: 2px 0 4px;
+      background: rgba(0,0,0,0.15);
+    }
+    .chapter-list.open { display: block; }
+
+    .chapter-btn {
+      display: block;
+      width: 100%;
+      padding: 6px 20px 6px 34px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: rgba(245,237,216,0.5);
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.82rem;
+      text-align: left;
+      letter-spacing: 0.02em;
+      transition: color var(--trans), background var(--trans);
+      border-left: 2px solid transparent;
+    }
+    .chapter-btn:hover {
+      color: rgba(212,160,23,0.85);
+      background: rgba(184,134,11,0.06);
+      border-left-color: rgba(184,134,11,0.2);
+    }
+    .chapter-btn.active {
+      color: var(--gold-light);
+      background: rgba(184,134,11,0.1);
+      border-left-color: var(--gold);
+    }
+
+    /* Sidebar footer */
+    .sidebar-footer {
+      padding: 14px 20px;
+      border-top: 1px solid rgba(184,134,11,0.15);
+      font-size: 0.68rem;
+      color: rgba(184,134,11,0.3);
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      flex-shrink: 0;
+    }
+
+    /* ── Main Content ────────────────────────────────── */
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: var(--cream);
+      overflow: hidden;
+    }
+
+    /* Topbar */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 32px;
+      background: var(--parchment);
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .topbar-breadcrumb {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--gold-dim);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .topbar-breadcrumb .sep { opacity: 0.4; }
+    .topbar-breadcrumb .current { color: var(--gold); font-weight: 600; }
+    .topbar-verse {
+      font-family: 'EB Garamond', serif;
+      font-size: 0.82rem;
+      font-style: italic;
+      color: var(--gold-dim);
+      opacity: 0.7;
+      max-width: 360px;
+      text-align: right;
+    }
+
+    /* Content scroll area */
+    .content-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 48px 56px 64px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(184,134,11,0.2) transparent;
+    }
+    .content-scroll::-webkit-scrollbar { width: 6px; }
+    .content-scroll::-webkit-scrollbar-track { background: transparent; }
+    .content-scroll::-webkit-scrollbar-thumb { background: rgba(184,134,11,0.2); border-radius: 3px; }
+
+    .content-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* ── Welcome Screen ───────────────────────────────── */
+    .welcome {
+      text-align: center;
+      padding: 60px 20px;
+      animation: fadeUp 0.6s ease both;
+    }
+    .welcome-ornament {
+      font-size: 3.5rem;
+      margin-bottom: 24px;
+      opacity: 0.7;
+    }
+    .welcome h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--gold-dim);
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+    }
+    .welcome-subtitle {
+      font-family: 'Crimson Pro', serif;
+      font-size: 1.05rem;
+      color: rgba(139,101,8,0.7);
+      font-style: italic;
+      margin-bottom: 36px;
+    }
+    .welcome-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 32px 0;
+      color: rgba(184,134,11,0.3);
+    }
+    .welcome-divider::before,
+    .welcome-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(184,134,11,0.3), transparent);
+    }
+    .welcome-verse {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: rgba(139,101,8,0.75);
+      max-width: 480px;
+      margin: 0 auto 10px;
+      line-height: 1.6;
+    }
+    .welcome-ref {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: rgba(184,134,11,0.45);
+    }
+    .welcome-hint {
+      margin-top: 48px;
+      padding: 20px 28px;
+      background: rgba(184,134,11,0.06);
+      border: 1px solid rgba(184,134,11,0.15);
+      border-radius: var(--radius);
+      font-size: 0.88rem;
+      color: rgba(139,101,8,0.65);
+      font-style: italic;
+    }
+
+    /* ── Loading State ───────────────────────────────── */
+    .loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 20px;
+      color: rgba(139,101,8,0.5);
+      gap: 16px;
+    }
+    .loading-cross {
+      font-size: 2rem;
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    .loading-text {
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+    }
+
+    /* ── Error State ─────────────────────────────────── */
+    .error-msg {
+      padding: 32px;
+      background: rgba(180,50,30,0.05);
+      border: 1px solid rgba(180,50,30,0.15);
+      border-radius: var(--radius);
+      color: rgba(180,50,30,0.75);
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+    }
+
+    /* ── Markdown Styles ─────────────────────────────── */
+    .md-body {
+      animation: fadeUp 0.45s ease both;
+    }
+
+    .md-body h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--gold-dim);
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .md-body h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--gold-dim);
+      letter-spacing: 0.04em;
+      margin: 36px 0 12px;
+      padding-left: 14px;
+      border-left: 3px solid var(--gold);
+    }
+    .md-body h3 {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #4a3410;
+      margin: 28px 0 10px;
+      font-style: italic;
+    }
+    .md-body h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: rgba(139,101,8,0.7);
+      margin: 22px 0 8px;
+      text-transform: uppercase;
+    }
+    .md-body p {
+      margin-bottom: 1.1em;
+      color: #2d1e07;
+      font-size: 1.05rem;
+    }
+    .md-body strong {
+      font-weight: 600;
+      color: #3a2506;
+    }
+    .md-body em {
+      font-style: italic;
+      color: #5a3d15;
+    }
+    .md-body blockquote {
+      margin: 24px 0;
+      padding: 18px 22px 18px 24px;
+      background: rgba(184,134,11,0.05);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-style: italic;
+      color: #4a3410;
+      font-size: 1.08rem;
+    }
+    .md-body blockquote p { margin-bottom: 0; color: inherit; }
+    .md-body ul, .md-body ol {
+      margin: 0.5em 0 1.2em 1.6em;
+    }
+    .md-body li {
+      margin-bottom: 0.4em;
+      color: #2d1e07;
+    }
+    .md-body li::marker { color: var(--gold-dim); }
+    .md-body hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(184,134,11,0.3), transparent);
+      margin: 36px 0;
+    }
+    .md-body code {
+      background: rgba(184,134,11,0.1);
+      border: 1px solid rgba(184,134,11,0.2);
+      border-radius: 3px;
+      padding: 1px 6px;
+      font-size: 0.88em;
+      font-family: 'Courier New', monospace;
+      color: #5a3d15;
+    }
+    .md-body pre {
+      background: rgba(26,18,9,0.06);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 22px;
+      overflow-x: auto;
+      margin: 1.2em 0;
+    }
+    .md-body pre code {
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    .md-body a {
+      color: var(--gold-dim);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(139,101,8,0.4);
+      transition: color var(--trans);
+    }
+    .md-body a:hover { color: var(--gold); }
+    .md-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5em 0;
+      font-size: 0.92rem;
+    }
+    .md-body th {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      background: rgba(184,134,11,0.07);
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+    .md-body td {
+      padding: 9px 14px;
+      border: 1px solid var(--border);
+      color: #2d1e07;
+    }
+    .md-body tr:nth-child(even) td { background: rgba(184,134,11,0.03); }
+
+    /* Chapter navigation arrows */
+    .chapter-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .chapter-nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: none;
+      border: 1px solid rgba(184,134,11,0.25);
+      border-radius: var(--radius);
+      cursor: pointer;
+      color: var(--gold-dim);
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.88rem;
+      transition: background var(--trans), border-color var(--trans), color var(--trans);
+    }
+    .chapter-nav-btn:hover {
+      background: rgba(184,134,11,0.08);
+      border-color: rgba(184,134,11,0.5);
+      color: var(--gold);
+    }
+    .chapter-nav-btn:disabled {
+      opacity: 0.25;
+      cursor: default;
+    }
+    .chapter-nav-btn:disabled:hover {
+      background: none;
+      border-color: rgba(184,134,11,0.25);
+      color: var(--gold-dim);
+    }
+
+    /* ── Mobile toggle ───────────────────────────────── */
+    .sidebar-toggle {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 200;
+      width: 44px;
+      height: 44px;
+      background: var(--gold);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(26,18,9,0.35);
+      align-items: center;
+      justify-content: center;
+      color: var(--sidebar-bg);
+      font-size: 1.1rem;
+      transition: background var(--trans);
+    }
+    .sidebar-toggle:hover { background: var(--gold-light); }
+
+    /* ── Animations ──────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50%       { opacity: 1;   transform: scale(1.1); }
+    }
+
+    /* ── Responsive ──────────────────────────────────── */
+    @media (max-width: 768px) {
+      .sidebar {
+        position: fixed;
+        top: 0; left: 0; bottom: 0;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 100;
+      }
+      .sidebar.mobile-open { transform: translateX(0); }
+      .sidebar-toggle { display: flex; }
+      .content-scroll { padding: 28px 22px 48px; }
+      .topbar { padding: 12px 20px; }
+      .topbar-verse { display: none; }
+    }
+
+    /* No data state */
+    .no-data {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px;
+      color: rgba(184,134,11,0.45);
+      gap: 10px;
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.92rem;
+      font-style: italic;
+    }
+    .no-data-icon { font-size: 2rem; }
+  </style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ── Sidebar ─────────────────────────────────── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <a class="sidebar-logo" href="#" onclick="showWelcome();return false;">
+        <svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="3" width="20" height="26" rx="2" fill="none" stroke="#d4a017" stroke-width="1.5"/>
+          <line x1="4" y1="10" x2="24" y2="10" stroke="#d4a017" stroke-width="0.8" opacity="0.5"/>
+          <line x1="8" y1="14" x2="20" y2="14" stroke="#d4a017" stroke-width="0.8" opacity="0.5"/>
+          <line x1="8" y1="17.5" x2="20" y2="17.5" stroke="#d4a017" stroke-width="0.8" opacity="0.5"/>
+          <line x1="8" y1="21" x2="16" y2="21" stroke="#d4a017" stroke-width="0.8" opacity="0.5"/>
+          <line x1="14" y1="4" x2="14" y2="10" stroke="#d4a017" stroke-width="1.5" opacity="0.7"/>
+          <circle cx="26" cy="26" r="5" fill="#1c1409" stroke="#d4a017" stroke-width="1.2"/>
+          <line x1="26" y1="23.5" x2="26" y2="26.5" stroke="#d4a017" stroke-width="1.2" stroke-linecap="round"/>
+          <circle cx="26" cy="27.8" r="0.6" fill="#d4a017"/>
+        </svg>
+        <div class="logo-text">
+          KJV Study Guide
+          <span>King James Version</span>
+        </div>
+      </a>
+
+      <!-- Search -->
+      <div class="search-wrap" id="searchWrap">
+        <span class="search-icon">⚲</span>
+        <input
+          class="search-input"
+          id="searchInput"
+          type="search"
+          placeholder="Search books &amp; chapters…"
+          autocomplete="off"
+        />
+        <div class="search-results" id="searchResults"></div>
+      </div>
+    </div>
+
+    <div class="sidebar-body" id="sidebarBody">
+      <div class="no-data">
+        <span class="no-data-icon">✦</span>
+        Loading…
+      </div>
+    </div>
+
+    <div class="sidebar-footer">
+      "Thy word is a lamp unto my feet" — Ps 119:105
+    </div>
+  </aside>
+
+  <!-- ── Main ────────────────────────────────────── -->
+  <main class="main">
+    <div class="topbar">
+      <div class="topbar-breadcrumb" id="breadcrumb">
+        <span>KJV Bible Study Guide</span>
+      </div>
+      <div class="topbar-verse" id="topbarVerse">
+        "All scripture is given by inspiration of God" — 2 Tim 3:16
+      </div>
+    </div>
+
+    <div class="content-scroll">
+      <div class="content-inner" id="contentInner">
+        <!-- Welcome is injected here -->
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Mobile sidebar toggle -->
+<button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation">☰</button>
+
+<script>
+/* ══════════════════════════════════════════════════════
+   KJV Bible Study Guide — Main Application
+   ══════════════════════════════════════════════════════ */
+
+// State
+let index      = null;   // { books: [...] }
+let activeBook = null;
+let activeChap = null;
+
+// ── Boot ──────────────────────────────────────────────
+async function boot() {
+  try {
+    showLoading();
+    const res = await fetch('data/index.json');
+    if (!res.ok) throw new Error('index.json not found');
+    index = await res.json();
+    buildSidebar();
+    loadSearchIndex();   // async, loads full-text index in background
+    showWelcome();
+  } catch (e) {
+    renderSidebarError();
+    showWelcome();   // still show welcome even without data
+  }
+}
+
+// ── Sidebar ───────────────────────────────────────────
+function buildSidebar() {
+  const body = document.getElementById('sidebarBody');
+  if (!index || !index.books || index.books.length === 0) {
+    body.innerHTML = `<div class="no-data"><span class="no-data-icon">✦</span>No books added yet.</div>`;
+    return;
+  }
+
+  // Group books by testament if provided
+  const hasTestament = index.books.some(b => b.testament);
+  let html = '';
+
+  if (hasTestament) {
+    const ot = index.books.filter(b => b.testament === 'OT');
+    const nt = index.books.filter(b => b.testament === 'NT');
+    if (ot.length) { html += `<div class="sidebar-section-label">Old Testament</div>`; ot.forEach(b => { html += bookEntryHtml(b); }); }
+    if (nt.length) { html += `<div class="sidebar-section-label">New Testament</div>`; nt.forEach(b => { html += bookEntryHtml(b); }); }
+  } else {
+    index.books.forEach(b => { html += bookEntryHtml(b); });
+  }
+
+  body.innerHTML = html;
+
+  // Wire up book buttons
+  document.querySelectorAll('.book-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const bookId = btn.dataset.book;
+      const chapList = document.getElementById('chaps-' + bookId);
+      const isOpen = chapList.classList.contains('open');
+
+      // If already active book and no chapter, just toggle
+      if (activeBook === bookId && !activeChap) {
+        chapList.classList.toggle('open');
+        btn.classList.toggle('open');
+        return;
+      }
+
+      // Open this book, close others
+      document.querySelectorAll('.chapter-list').forEach(c => c.classList.remove('open'));
+      document.querySelectorAll('.book-btn').forEach(b => b.classList.remove('open'));
+      chapList.classList.add('open');
+      btn.classList.add('open');
+
+      loadBook(bookId);
+    });
+  });
+
+  // Wire up chapter buttons
+  document.querySelectorAll('.chapter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      loadChapter(btn.dataset.book, btn.dataset.chap);
+    });
+  });
+}
+
+function bookEntryHtml(book) {
+  const chapItems = (book.chapters || []).map(ch =>
+    `<button class="chapter-btn" data-book="${book.id}" data-chap="${ch.id}">${ch.title || 'Chapter ' + ch.id}</button>`
+  ).join('');
+
+  return `
+  <div class="book-entry">
+    <button class="book-btn" data-book="${book.id}">
+      ${book.name}
+      <span class="book-btn-arrow">▶</span>
+    </button>
+    <div class="chapter-list" id="chaps-${book.id}">
+      ${chapItems || '<button class="chapter-btn" style="opacity:0.4;cursor:default;pointer-events:none;">No chapters yet</button>'}
+    </div>
+  </div>`;
+}
+
+function renderSidebarError() {
+  document.getElementById('sidebarBody').innerHTML = `
+    <div class="no-data">
+      <span class="no-data-icon">⚠</span>
+      Could not load data/index.json
+    </div>`;
+}
+
+// ── Navigation ────────────────────────────────────────
+function setActiveSidebar(bookId, chapId) {
+  document.querySelectorAll('.book-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.book === bookId);
+  });
+  document.querySelectorAll('.chapter-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.book === bookId && b.dataset.chap === chapId);
+  });
+}
+
+function openBookInSidebar(bookId) {
+  document.querySelectorAll('.chapter-list').forEach(c => c.classList.remove('open'));
+  document.querySelectorAll('.book-btn').forEach(b => b.classList.remove('open'));
+  const chapList = document.getElementById('chaps-' + bookId);
+  const btn = document.querySelector(`.book-btn[data-book="${bookId}"]`);
+  if (chapList) chapList.classList.add('open');
+  if (btn) btn.classList.add('open');
+}
+
+// ── Content Loading ────────────────────────────────────
+async function loadBook(bookId) {
+  activeBook = bookId;
+  activeChap = null;
+  setActiveSidebar(bookId, null);
+  openBookInSidebar(bookId);
+
+  const book = index.books.find(b => b.id === bookId);
+  setBreadcrumb(book?.name || bookId);
+  showLoading();
+
+  try {
+    const res = await fetch(`data/${bookId}/overview.md`);
+    if (!res.ok) throw new Error('overview.md not found');
+    const md = await res.text();
+    showMarkdown(md, { bookId, book });
+  } catch (e) {
+    showContent(`<div class="error-msg">⚠ Could not load <code>data/${bookId}/overview.md</code>. Please make sure the file exists.</div>`);
+  }
+}
+
+async function loadChapter(bookId, chapId) {
+  activeBook = bookId;
+  activeChap = chapId;
+
+  // Open book in sidebar
+  openBookInSidebar(bookId);
+  setActiveSidebar(bookId, chapId);
+
+  const book  = index.books.find(b => b.id === bookId);
+  const chap  = book?.chapters?.find(c => c.id === chapId);
+  const label = chap?.title || ('Chapter ' + chapId);
+  setBreadcrumb(book?.name || bookId, label);
+  showLoading();
+
+  try {
+    const res = await fetch(`data/${bookId}/${chapId}/guide.md`);
+    if (!res.ok) throw new Error('guide.md not found');
+    const md = await res.text();
+    showMarkdown(md, { bookId, chapId, book, chap });
+  } catch (e) {
+    showContent(`<div class="error-msg">⚠ Could not load <code>data/${bookId}/${chapId}/guide.md</code>. Please make sure the file exists.</div>`);
+  }
+}
+
+// ── Content Rendering ─────────────────────────────────
+function showWelcome() {
+  activeBook = null;
+  activeChap = null;
+  setActiveSidebar(null, null);
+  setBreadcrumb(null);
+
+  showContent(`
+    <div class="welcome">
+      <div class="welcome-ornament">✦</div>
+      <h1>KJV Bible Study Guide</h1>
+      <p class="welcome-subtitle">A personal guide through the King James Version</p>
+
+      <div class="welcome-divider">✦</div>
+
+      <p class="welcome-verse">"Thy word have I hid in mine heart, that I might not sin against thee."</p>
+      <p class="welcome-ref">Psalm 119:11 · KJV</p>
+
+      <div class="welcome-divider">✦</div>
+
+      ${index && index.books && index.books.length > 0 ? `
+        <p class="welcome-subtitle">${index.books.length} book${index.books.length !== 1 ? 's' : ''} available — select from the panel on the left.</p>
+      ` : `
+        <div class="welcome-hint">
+          No study guides added yet. Add books by placing your <code>overview.md</code> and chapter <code>guide.md</code> files into the <code>data/</code> folder and updating <code>data/index.json</code>.
+        </div>
+      `}
+    </div>
+  `);
+}
+
+function showMarkdown(md, ctx) {
+  const html = marked.parse(md);
+  let nav = '';
+
+  // Chapter navigation
+  if (ctx.chapId && ctx.book) {
+    const chapters = ctx.book.chapters || [];
+    const idx = chapters.findIndex(c => c.id === ctx.chapId);
+    const prev = chapters[idx - 1];
+    const next = chapters[idx + 1];
+
+    nav = `
+      <div class="chapter-nav">
+        <button class="chapter-nav-btn" ${!prev ? 'disabled' : ''}
+          onclick="${prev ? `loadChapter('${ctx.bookId}','${prev.id}')` : ''}">
+          ← ${prev ? (prev.title || 'Chapter ' + prev.id) : 'Previous'}
+        </button>
+        <button class="chapter-nav-btn" onclick="loadBook('${ctx.bookId}')">
+          ${ctx.book.name || ctx.bookId} Overview
+        </button>
+        <button class="chapter-nav-btn" ${!next ? 'disabled' : ''}
+          onclick="${next ? `loadChapter('${ctx.bookId}','${next.id}')` : ''}">
+          ${next ? (next.title || 'Chapter ' + next.id) : 'Next'} →
+        </button>
+      </div>`;
+  }
+
+  showContent(`<div class="md-body">${html}${nav}</div>`);
+}
+
+function showContent(html) {
+  const el = document.getElementById('contentInner');
+  el.innerHTML = html;
+  el.scrollTop = 0;
+  document.querySelector('.content-scroll').scrollTop = 0;
+}
+
+function showLoading() {
+  showContent(`
+    <div class="loading">
+      <span class="loading-cross">✦</span>
+      <span class="loading-text">Loading…</span>
+    </div>`);
+}
+
+// ── Breadcrumb ────────────────────────────────────────
+function setBreadcrumb(bookName, chapName) {
+  const el = document.getElementById('breadcrumb');
+  if (!bookName) {
+    el.innerHTML = `<span class="current">KJV Bible Study Guide</span>`;
+  } else if (!chapName) {
+    el.innerHTML = `<span>KJV Bible Study</span><span class="sep">›</span><span class="current">${bookName}</span>`;
+  } else {
+    el.innerHTML = `<span>KJV Bible Study</span><span class="sep">›</span><span>${bookName}</span><span class="sep">›</span><span class="current">${chapName}</span>`;
+  }
+}
+
+// ── Search ────────────────────────────────────────────
+let searchIndex     = null;   // full-text entries from search-index.json
+let searchIndexFull = false;  // true when search-index.json loaded successfully
+
+async function loadSearchIndex() {
+  try {
+    const res = await fetch('data/search-index.json');
+    if (!res.ok) throw new Error('not found');
+    searchIndex = await res.json();
+    searchIndexFull = true;
+    // Update placeholder to signal full-text is available
+    document.getElementById('searchInput').placeholder = 'Search scripture, themes, notes…';
+  } catch {
+    // Fallback: build a title-only index from the already-loaded manifest
+    searchIndexFull = false;
+    if (index) {
+      searchIndex = [];
+      (index.books || []).forEach(book => {
+        searchIndex.push({ type: 'book', bookId: book.id, bookName: book.name, title: book.name, content: '' });
+        (book.chapters || []).forEach(chap => {
+          searchIndex.push({
+            type: 'chapter', bookId: book.id, chapId: chap.id,
+            bookName: book.name, title: chap.title || 'Chapter ' + chap.id, content: ''
+          });
+        });
+      });
+    }
+  }
+}
+
+// Extract a short highlighted snippet around the first match
+function getSnippet(content, query, radius = 80) {
+  const lower = content.toLowerCase();
+  const idx   = lower.indexOf(query.toLowerCase());
+  if (idx === -1) return null;
+  const start  = Math.max(0, idx - radius);
+  const end    = Math.min(content.length, idx + query.length + radius);
+  let snippet  = (start > 0 ? '…' : '') + content.slice(start, end) + (end < content.length ? '…' : '');
+  // Bold the matched term
+  const re = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+  snippet = snippet.replace(re, '<mark>$1</mark>');
+  return snippet;
+}
+
+// Score a result: title match = higher, content match = lower
+function scoreItem(item, q) {
+  const tl = item.title.toLowerCase();
+  const bl = (item.bookName || '').toLowerCase();
+  const cl = (item.content  || '').toLowerCase();
+  if (tl.includes(q)) return 3;
+  if (bl.includes(q)) return 2;
+  if (cl.includes(q)) return 1;
+  return 0;
+}
+
+document.getElementById('searchInput').addEventListener('input', function () {
+  const q   = this.value.trim();
+  const res = document.getElementById('searchResults');
+
+  if (!q || q.length < 2) { res.classList.remove('visible'); return; }
+
+  if (!searchIndex || searchIndex.length === 0) {
+    res.innerHTML = `<div class="search-no-results">Index not loaded yet.</div>`;
+    res.classList.add('visible');
+    return;
+  }
+
+  const ql = q.toLowerCase();
+
+  // Score and filter
+  const matches = searchIndex
+    .map(item => ({ item, score: scoreItem(item, ql) }))
+    .filter(({ score }) => score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 10)
+    .map(({ item }) => item);
+
+  if (!matches.length) {
+    res.innerHTML = `<div class="search-no-results">No results for "<em>${q}</em>".</div>`;
+  } else {
+    res.innerHTML = matches.map(item => {
+      const icon    = item.type === 'book' ? '📖' : '📄';
+      const sub     = item.type === 'book' ? 'Book Overview' : item.bookName;
+      const snippet = getSnippet(item.content || '', q);
+      return `
+        <div class="search-result-item"
+             data-type="${item.type}"
+             data-book="${item.bookId}"
+             data-chap="${item.chapId || ''}">
+          <div class="search-result-title">${icon} ${item.title}</div>
+          <div class="search-result-sub">${sub}</div>
+          ${snippet ? `<div class="search-result-snippet">${snippet}</div>` : ''}
+        </div>`;
+    }).join('');
+
+    res.querySelectorAll('.search-result-item').forEach(el => {
+      el.addEventListener('click', () => {
+        const { type, book, chap } = el.dataset;
+        if (type === 'book') loadBook(book);
+        else loadChapter(book, chap);
+        document.getElementById('searchInput').value = '';
+        res.classList.remove('visible');
+      });
+    });
+  }
+
+  res.classList.add('visible');
+});
+
+// Close search on outside click
+document.addEventListener('click', (e) => {
+  if (!document.getElementById('searchWrap').contains(e.target)) {
+    document.getElementById('searchResults').classList.remove('visible');
+  }
+});
+
+// ── Mobile sidebar toggle ─────────────────────────────
+document.getElementById('sidebarToggle').addEventListener('click', () => {
+  document.getElementById('sidebar').classList.toggle('mobile-open');
+});
+document.querySelector('.main').addEventListener('click', () => {
+  document.getElementById('sidebar').classList.remove('mobile-open');
+});
+
+// ── Keyboard shortcuts ────────────────────────────────
+document.addEventListener('keydown', (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+    e.preventDefault();
+    document.getElementById('searchInput').focus();
+  }
+  if (e.key === 'Escape') {
+    document.getElementById('searchResults').classList.remove('visible');
+    document.getElementById('searchInput').blur();
+  }
+});
+
+// ── Init ──────────────────────────────────────────────
+boot();
+</script>
+</body>
+</html>
