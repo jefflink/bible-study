@@ -1,0 +1,20 @@
+{
+  "books": [
+    {
+      "id": "Titus",
+      "name": "Titus",
+      "testament": "OT",
+      "chapters": [
+        { "id": "1", "title": "Chapter 1" }
+      ]
+    },
+    {
+      "id": "Philemon",
+      "name": "Philemon",
+      "testament": "OT",
+      "chapters": [
+        { "id": "1", "title": "Chapter 1" }
+      ]
+    }
+  ]
+}
