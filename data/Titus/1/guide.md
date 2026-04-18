@@ -1,5 +1,3 @@
----
-
 ## 📜 Chapter 1 Structure at a Glance
 
 | Section | Verses | Title |
