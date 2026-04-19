@@ -294,3 +294,8 @@ This section is one of the most **doctrinally rich** passages in the entire lett
 | **Not all religious debate is profitable** — some arguments must simply be avoided | v.9 |
 | **Church discipline is both gracious and firm** — warn twice, then withdraw | v.10–11 |
 | **Grace frames everything** — it is the beginning and end of the Christian life | v.1, 15 |
+
+---
+
+> *"Not by works of righteousness which we have done, but according to his mercy he saved us, by the washing of regeneration, and renewing of the Holy Ghost; Which he shed on us abundantly through Jesus Christ our Saviour."*
+> — **Titus 3:5–6 (KJV)**
