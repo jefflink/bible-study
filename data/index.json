@@ -26,6 +26,12 @@
       "description": "An interactive chronological overview of key biblical events."
     },
     {
+      "id": "moses-timeline",
+      "title": "Moses Exodus Event Timeline",
+      "href": "data/interactive/moses-timeline.html",
+      "description": "An interactive chronological overview of events based on Moses account during Israel Exodus."
+    },
+    {
       "id": "maps",
       "title": "Maps of the Holy Land",
       "href": "data/interactive/maps.html",
