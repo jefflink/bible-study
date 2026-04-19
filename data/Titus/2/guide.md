@@ -1,7 +1,5 @@
 # 📖 Titus Chapter 2 (KJV)
 
----
-
 ## 📜 Chapter 2 Structure at a Glance
 
 | Section | Verses | Title |

@@ -27,3 +27,18 @@
 | **In Corinth** | Sent to handle the troubled Corinthian church (2 Cor. 7:6–7, 8:6) |
 | **In Crete** | Left behind to establish order and appoint elders |
 | **Significance** | Living proof that Gentiles need not be circumcised to be saved |
+
+---
+
+## 📖 Complete Book of Titus — Summary Table
+
+| Chapter | Key Theme | Key Verse |
+|---|---|---|
+| **Chapter 1** | Sound Leadership & Exposing False Teachers | *"Holding fast the faithful word"* (1:9) |
+| **Chapter 2** | Sound Doctrine Producing Godly Living for All Groups | *"Grace of God...teaching us"* (2:11–12) |
+| **Chapter 3** | Grace Transforms Us for Good Works in the World | *"Not by works...but according to his mercy he saved us"* (3:5) |
+
+---
+
+> *"Not by works of righteousness which we have done, but according to his mercy he saved us, by the washing of regeneration, and renewing of the Holy Ghost; Which he shed on us abundantly through Jesus Christ our Saviour."*
+> — **Titus 3:5–6 (KJV)**
