@@ -679,6 +679,184 @@
       .topbar-verse { display: none; }
     }
 
+    /* ── Testament Group (collapsible) ───────────────── */
+    .testament-group { }
+
+    .testament-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 10px 20px 8px;
+      background: none;
+      border: none;
+      border-top: 1px solid rgba(160,118,42,0.1);
+      cursor: pointer;
+      text-align: left;
+      transition: background var(--trans);
+    }
+    .testament-btn:first-child { border-top: none; }
+    .testament-btn:hover { background: rgba(160,118,42,0.05); }
+
+    .testament-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      color: #6a5530;
+      text-transform: uppercase;
+    }
+    .testament-btn.t-open .testament-label { color: #a07830; }
+
+    .testament-arrow {
+      font-size: 0.6rem;
+      color: #5a4525;
+      transition: transform var(--trans);
+      flex-shrink: 0;
+    }
+    .testament-btn.t-open .testament-arrow {
+      transform: rotate(90deg);
+      color: #a07830;
+    }
+
+    .testament-books {
+      display: none;
+      padding-bottom: 4px;
+    }
+    .testament-books.t-open { display: block; }
+
+    /* ── Interactive Section ─────────────────────────── */
+    .interactive-section {
+      border-top: 1px solid rgba(160,118,42,0.12);
+      margin-top: 4px;
+    }
+
+    .interactive-header-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 10px 20px 8px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      transition: background var(--trans);
+    }
+    .interactive-header-btn:hover { background: rgba(160,118,42,0.05); }
+
+    .interactive-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      color: #6a5530;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .interactive-header-btn.i-open .interactive-label { color: #a07830; }
+    .interactive-label-icon { font-size: 0.75rem; opacity: 0.8; }
+
+    .interactive-arrow {
+      font-size: 0.6rem;
+      color: #5a4525;
+      transition: transform var(--trans);
+      flex-shrink: 0;
+    }
+    .interactive-header-btn.i-open .interactive-arrow {
+      transform: rotate(90deg);
+      color: #a07830;
+    }
+
+    .interactive-list {
+      display: none;
+      padding-bottom: 6px;
+    }
+    .interactive-list.i-open { display: block; }
+
+    .interactive-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      padding: 7px 20px 7px 28px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #907860;
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.85rem;
+      text-align: left;
+      transition: color var(--trans), background var(--trans);
+      border-left: 2px solid transparent;
+    }
+    .interactive-btn:hover {
+      color: #d4a84a;
+      background: rgba(160,118,42,0.07);
+      border-left-color: rgba(196,149,62,0.25);
+    }
+    .interactive-btn.active {
+      color: #e8c870;
+      background: rgba(160,118,42,0.12);
+      border-left-color: #c4953e;
+    }
+    .interactive-btn-icon { font-size: 0.8rem; opacity: 0.7; flex-shrink: 0; }
+
+    /* Interactive iframe view */
+    .interactive-frame-wrap {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      animation: fadeUp 0.4s ease both;
+    }
+    .interactive-frame-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0 16px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
+    .interactive-frame-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #d4a84a;
+      letter-spacing: 0.04em;
+    }
+    .interactive-open-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      background: none;
+      border: 1px solid rgba(160,118,42,0.25);
+      border-radius: var(--radius);
+      cursor: pointer;
+      color: #907858;
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.82rem;
+      text-decoration: none;
+      transition: all var(--trans);
+    }
+    .interactive-open-btn:hover {
+      background: rgba(160,118,42,0.1);
+      border-color: rgba(196,149,62,0.45);
+      color: #d4a84a;
+    }
+    .interactive-iframe {
+      flex: 1;
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: #0e0b06;
+      min-height: 520px;
+    }
+
     /* No data state */
     .no-data {
       display: flex;
@@ -798,39 +976,108 @@ function buildSidebar() {
   const body = document.getElementById('sidebarBody');
   if (!index || !index.books || index.books.length === 0) {
     body.innerHTML = `<div class="no-data"><span class="no-data-icon">✦</span>No books added yet.</div>`;
+    buildInteractiveSection(body);
     return;
   }
 
-  // Group books by testament if provided
   const hasTestament = index.books.some(b => b.testament);
   let html = '';
 
   if (hasTestament) {
     const ot = index.books.filter(b => b.testament === 'OT');
     const nt = index.books.filter(b => b.testament === 'NT');
-    if (ot.length) { html += `<div class="sidebar-section-label">Old Testament</div>`; ot.forEach(b => { html += bookEntryHtml(b); }); }
-    if (nt.length) { html += `<div class="sidebar-section-label">New Testament</div>`; nt.forEach(b => { html += bookEntryHtml(b); }); }
+    if (ot.length) html += testamentGroupHtml('OT', 'Old Testament', ot);
+    if (nt.length) html += testamentGroupHtml('NT', 'New Testament', nt);
   } else {
     index.books.forEach(b => { html += bookEntryHtml(b); });
   }
 
   body.innerHTML = html;
+  wireBookEvents();
+  buildInteractiveSection(body);
+  wireTestamentEvents();
+}
 
+function testamentGroupHtml(id, label, books) {
+  const bookItems = books.map(b => bookEntryHtml(b)).join('');
+  return `
+  <div class="testament-group">
+    <button class="testament-btn t-open" data-testament="${id}">
+      <span class="testament-label">${label}</span>
+      <span class="testament-arrow">▶</span>
+    </button>
+    <div class="testament-books t-open" id="testament-${id}">
+      ${bookItems}
+    </div>
+  </div>`;
+}
+
+function wireTestamentEvents() {
+  document.querySelectorAll('.testament-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.testament;
+      const books = document.getElementById('testament-' + id);
+      btn.classList.toggle('t-open');
+      books.classList.toggle('t-open');
+    });
+  });
+}
+
+function buildInteractiveSection(container) {
+  const items = (index && index.interactive) ? index.interactive : [];
+  const itemsHtml = items.length
+    ? items.map(item => `
+        <button class="interactive-btn" data-interactive="${item.id}">
+          <span class="interactive-btn-icon">✦</span>
+          ${item.title}
+        </button>`).join('')
+    : `<div style="padding:8px 20px 8px 28px;font-family:'Crimson Pro',serif;font-size:0.8rem;color:#5a4828;font-style:italic;">No items yet</div>`;
+
+  const section = document.createElement('div');
+  section.className = 'interactive-section';
+  section.innerHTML = `
+    <button class="interactive-header-btn i-open">
+      <span class="interactive-label">
+        <span class="interactive-label-icon">⚡</span>
+        Interactive
+      </span>
+      <span class="interactive-arrow">▶</span>
+    </button>
+    <div class="interactive-list i-open">
+      ${itemsHtml}
+    </div>`;
+  container.appendChild(section);
+
+  // Wire toggle
+  section.querySelector('.interactive-header-btn').addEventListener('click', function() {
+    this.classList.toggle('i-open');
+    section.querySelector('.interactive-list').classList.toggle('i-open');
+  });
+
+  // Wire item buttons
+  section.querySelectorAll('.interactive-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.interactive-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const item = (index.interactive || []).find(i => i.id === btn.dataset.interactive);
+      loadInteractive(item);
+    });
+  });
+}
+
+function wireBookEvents() {
   // Wire up book buttons
   document.querySelectorAll('.book-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const bookId = btn.dataset.book;
       const chapList = document.getElementById('chaps-' + bookId);
-      const isOpen = chapList.classList.contains('open');
 
-      // If already active book and no chapter, just toggle
       if (activeBook === bookId && !activeChap) {
         chapList.classList.toggle('open');
         btn.classList.toggle('open');
         return;
       }
 
-      // Open this book, close others
       document.querySelectorAll('.chapter-list').forEach(c => c.classList.remove('open'));
       document.querySelectorAll('.book-btn').forEach(b => b.classList.remove('open'));
       chapList.classList.add('open');
@@ -881,6 +1128,36 @@ function setActiveSidebar(bookId, chapId) {
   document.querySelectorAll('.chapter-btn').forEach(b => {
     b.classList.toggle('active', b.dataset.book === bookId && b.dataset.chap === chapId);
   });
+  // Clear interactive active state when navigating to scripture
+  document.querySelectorAll('.interactive-btn').forEach(b => b.classList.remove('active'));
+}
+
+// ── Interactive ───────────────────────────────────────
+function loadInteractive(item) {
+  if (!item) return;
+  activeBook = null;
+  activeChap = null;
+  document.querySelectorAll('.book-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.chapter-btn').forEach(b => b.classList.remove('active'));
+
+  setBreadcrumb(null, null, item.title);
+
+  showContent(`
+    <div class="interactive-frame-wrap">
+      <div class="interactive-frame-topbar">
+        <div class="interactive-frame-title">${item.title}</div>
+        <a class="interactive-open-btn" href="${item.href}" target="_blank">
+          ↗ Open full page
+        </a>
+      </div>
+      ${item.description ? `<p style="font-family:'Crimson Pro',serif;font-size:0.95rem;color:#9a8058;font-style:italic;margin-bottom:16px;">${item.description}</p>` : ''}
+      <iframe
+        class="interactive-iframe"
+        src="${item.href}"
+        title="${item.title}"
+        loading="lazy">
+      </iframe>
+    </div>`);
 }
 
 function openBookInSidebar(bookId) {
@@ -1014,9 +1291,11 @@ function showLoading() {
 }
 
 // ── Breadcrumb ────────────────────────────────────────
-function setBreadcrumb(bookName, chapName) {
+function setBreadcrumb(bookName, chapName, interactiveTitle) {
   const el = document.getElementById('breadcrumb');
-  if (!bookName) {
+  if (interactiveTitle) {
+    el.innerHTML = `<span>KJV Bible Study</span><span class="sep">›</span><span>Interactive</span><span class="sep">›</span><span class="current">${interactiveTitle}</span>`;
+  } else if (!bookName) {
     el.innerHTML = `<span class="current">KJV Bible Study Guide</span>`;
   } else if (!chapName) {
     el.innerHTML = `<span>KJV Bible Study</span><span class="sep">›</span><span class="current">${bookName}</span>`;
