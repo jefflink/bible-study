@@ -3,7 +3,7 @@
     {
       "id": "Titus",
       "name": "Titus",
-      "testament": "OT",
+      "testament": "NT",
       "chapters": [
         { "id": "1", "title": "Chapter 1" },
         { "id": "2", "title": "Chapter 2" }
@@ -12,7 +12,7 @@
     {
       "id": "Philemon",
       "name": "Philemon",
-      "testament": "OT",
+      "testament": "NT",
       "chapters": [
         { "id": "1", "title": "Chapter 1" }
       ]
