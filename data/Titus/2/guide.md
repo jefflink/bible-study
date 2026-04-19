@@ -19,6 +19,8 @@
 ✦ SECTION 1 — Instructions to Older Men (Verses 1–2)
 > *“But speak thou the things which become sound doctrine: That the aged men be sober, grave, temperate, sound in faith, in charity, in patience.”*
 > — **Titus 2:1–2 (KJV)**
+
+
 Note: Verse 1 opens with “But” — a direct contrast to the false teachers described in Chapter 1. Titus is to be the opposite of those deceivers.
 
 
