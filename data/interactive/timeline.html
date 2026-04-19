@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Biblical Timeline</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,400;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #1a1510; --surface: #221c12; --gold: #c4953e;
+      --gold-dim: #8a6830; --text: #d0c0a0; --border: rgba(160,118,42,0.2);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Crimson Pro', serif; font-size: 15px; padding: 24px 28px; }
+    h2 { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 20px; }
+    .timeline { position: relative; padding-left: 24px; }
+    .timeline::before { content: ''; position: absolute; left: 7px; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, transparent, var(--gold-dim), transparent); }
+    .event { position: relative; margin-bottom: 18px; }
+    .event::before { content: ''; position: absolute; left: -20px; top: 6px; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 6px rgba(196,149,62,0.4); }
+    .event-date { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--gold-dim); margin-bottom: 2px; }
+    .event-title { font-size: 0.95rem; color: #e0c890; font-weight: 400; margin-bottom: 2px; }
+    .event-desc { font-size: 0.82rem; color: rgba(208,192,160,0.65); font-style: italic; line-height: 1.5; }
+    .era { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.2em; color: var(--gold-dim); text-transform: uppercase; margin: 24px 0 12px -24px; padding: 5px 12px; background: rgba(160,118,42,0.08); border-left: 2px solid var(--gold-dim); border-radius: 0 4px 4px 0; }
+  </style>
+</head>
+<body>
+  <h2>Biblical Timeline</h2>
+  <div class="timeline">
+    <div class="era">Primeval History</div>
+    <div class="event"><div class="event-date">c. 4000 BC</div><div class="event-title">Creation</div><div class="event-desc">God creates the heavens and the earth in six days. (Gen 1)</div></div>
+    <div class="event"><div class="event-date">c. 3000 BC</div><div class="event-title">The Flood</div><div class="event-desc">Noah builds the ark; God floods the earth and establishes His covenant. (Gen 6–9)</div></div>
+    <div class="era">Patriarchal Period</div>
+    <div class="event"><div class="event-date">c. 2091 BC</div><div class="event-title">Abraham's Call</div><div class="event-desc">God calls Abram out of Ur; the Abrahamic covenant is established. (Gen 12)</div></div>
+    <div class="event"><div class="event-date">c. 1850 BC</div><div class="event-title">Joseph in Egypt</div><div class="event-desc">Joseph is sold into slavery and rises to become second-in-command. (Gen 37–50)</div></div>
+    <div class="era">The Exodus & Law</div>
+    <div class="event"><div class="event-date">c. 1446 BC</div><div class="event-title">The Exodus</div><div class="event-desc">Moses leads Israel out of Egypt; the Law is given at Sinai. (Exod 1–20)</div></div>
+    <div class="era">Kingdom Period</div>
+    <div class="event"><div class="event-date">c. 1010 BC</div><div class="event-title">David Becomes King</div><div class="event-desc">David unites Israel and establishes Jerusalem as the capital. (2 Sam 5)</div></div>
+    <div class="event"><div class="event-date">c. 966 BC</div><div class="event-title">Solomon's Temple</div><div class="event-desc">The first temple is built in Jerusalem. (1 Kgs 6)</div></div>
+    <div class="era">New Testament</div>
+    <div class="event"><div class="event-date">c. 4 BC</div><div class="event-title">Birth of Jesus</div><div class="event-desc">The Word becomes flesh and dwells among us. (Luke 2, John 1:14)</div></div>
+    <div class="event"><div class="event-date">c. AD 30</div><div class="event-title">Crucifixion & Resurrection</div><div class="event-desc">Christ dies for the sins of the world and rises on the third day. (John 19–20)</div></div>
+    <div class="event"><div class="event-date">c. AD 95</div><div class="event-title">Revelation Written</div><div class="event-desc">John receives the final vision of Christ's return and the new creation. (Rev 1)</div></div>
+  </div>
+</body>
+</html>

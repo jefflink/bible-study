@@ -3,19 +3,33 @@
     {
       "id": "Titus",
       "name": "Titus",
-      "testament": "NT",
+      "testament": "OT",
       "chapters": [
         { "id": "1", "title": "Chapter 1" },
-        { "id": "2", "title": "Chapter 2" }
+        { "id": "2", "title": "Chapter 1" }
       ]
     },
     {
       "id": "Philemon",
       "name": "Philemon",
-      "testament": "NT",
+      "testament": "OT",
       "chapters": [
         { "id": "1", "title": "Chapter 1" }
       ]
+    }
+  ],
+  "interactive": [
+    {
+      "id": "timeline",
+      "title": "Biblical Timeline",
+      "href": "data/interactive/timeline.html",
+      "description": "An interactive chronological overview of key biblical events."
+    },
+    {
+      "id": "maps",
+      "title": "Maps of the Holy Land",
+      "href": "data/interactive/maps.html",
+      "description": "Geographic context for the narratives of Scripture."
     }
   ]
 }

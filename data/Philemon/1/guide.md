@@ -1,3 +1,7 @@
+# 📖 Philemon Chapter 1 (KJV)
+
+---
+
 ## 📜 Structure at a Glance
 
 | Section | Verses | Title |

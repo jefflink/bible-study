@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Journey of Moses – KJV Bible Study</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: linear-gradient(160deg, #1a120b 0%, #2c1a0e 40%, #1a120b 100%);
+      min-height: 100vh;
+      color: #f0e6d3;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in { animation: fadeIn 0.25s ease; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const events = [
+      {
+        id: 1, year: "Year 1", title: "The Ten Plagues & Passover",
+        ref: "Exodus 7–12", icon: "🩸", category: "miracle",
+        summary: "God sends ten plagues upon Egypt to compel Pharaoh to release the Israelites.",
+        detail: "God sends ten devastating plagues upon Egypt: water turning to blood, frogs, lice, flies, livestock disease, boils, hail, locusts, darkness, and finally the death of the firstborn. The Israelites are spared through the Passover lamb's blood on their doorposts.",
+        verse: '"And the blood shall be to you for a token upon the houses where ye are: and when I see the blood, I will pass over you." — Exodus 12:13 (KJV)',
+      },
+      {
+        id: 2, year: "Year 1", title: "The Exodus & Parting of the Red Sea",
+        ref: "Exodus 13–14", icon: "🌊", category: "miracle",
+        summary: "600,000 men plus families leave Egypt; God parts the Red Sea to save them.",
+        detail: "About 600,000 men, plus women and children, depart Egypt. Guided by a pillar of cloud by day and fire by night, they reach the Red Sea. Pharaoh pursues with his army. God commands Moses to stretch out his rod — the sea parts and Israel crosses on dry ground. The Egyptian army is drowned.",
+        verse: '"And Moses stretched out his hand over the sea; and the LORD caused the sea to go back by a strong east wind all that night." — Exodus 14:21 (KJV)',
+      },
+      {
+        id: 3, year: "Year 1", title: "Manna, Quail & Water",
+        ref: "Exodus 15–17", icon: "🍞", category: "provision",
+        summary: "God provides bread from heaven, quail, and water from a rock in the wilderness.",
+        detail: "In the wilderness of Sin, Israel murmurs for food. God sends manna every morning and quail in the evenings. At Rephidim, the people thirst and contend with Moses. God commands Moses to strike the rock at Horeb, and water flows out for the people.",
+        verse: '"Then said the LORD unto Moses, Behold, I will rain bread from heaven for you." — Exodus 16:4 (KJV)',
+      },
+      {
+        id: 4, year: "Year 1", title: "The Ten Commandments at Mount Sinai",
+        ref: "Exodus 19–20", icon: "⛰️", category: "covenant",
+        summary: "God descends on Mount Sinai in fire and thunder and gives Moses the Ten Commandments.",
+        detail: "Three months after the Exodus, Israel camps before Mount Sinai. The mountain trembles with fire, smoke, and a great trumpet sound. God speaks the Ten Commandments directly to the people, then inscribes them on two tablets of stone for Moses.",
+        verse: '"And God spake all these words, saying, I am the LORD thy God, which have brought thee out of the land of Egypt, out of the house of bondage." — Exodus 20:1–2 (KJV)',
+      },
+      {
+        id: 5, year: "Year 1", title: "The Golden Calf",
+        ref: "Exodus 32", icon: "🐂", category: "failure",
+        summary: "While Moses is on the mountain, Israel makes a golden idol. Moses intercedes for the people.",
+        detail: "Moses spends 40 days on the mountain. The people grow impatient and persuade Aaron to make a golden calf. God threatens to destroy Israel. Moses intercedes, reminding God of His covenant. He descends, breaks the tablets in anger, and calls the Levites to execute the ringleaders — 3,000 men fall.",
+        verse: '"And Moses besought the LORD his God, and said, LORD, why doth thy wrath wax hot against thy people?" — Exodus 32:11 (KJV)',
+      },
+      {
+        id: 6, year: "Year 1–2", title: "The Tabernacle Constructed",
+        ref: "Exodus 35–40", icon: "🏕️", category: "covenant",
+        summary: "Israel builds the Tabernacle — the portable dwelling place of God — according to God's exact design.",
+        detail: "God gives detailed instructions for a portable sanctuary — the Tabernacle — with its Ark of the Covenant, the Altar, the Menorah, and the Priestly garments. The glory of God fills the completed Tabernacle as a cloud by day and fire by night.",
+        verse: '"Then a cloud covered the tent of the congregation, and the glory of the LORD filled the tabernacle." — Exodus 40:34 (KJV)',
+      },
+      {
+        id: 7, year: "Year 2", title: "Twelve Spies Sent to Canaan",
+        ref: "Numbers 13–14", icon: "🔭", category: "failure",
+        summary: "Twelve spies explore Canaan. Ten give a fearful report; only Caleb and Joshua trust God.",
+        detail: "One spy from each tribe is sent to scout Canaan for 40 days. Ten spies say the inhabitants are giants and resistance is hopeless. Only Caleb and Joshua urge trust in God. God sentences the entire generation to die in the wilderness — one year for each day spied (40 years).",
+        verse: '"But Caleb stilled the people before Moses, and said, Let us go up at once, and possess it; for we are well able to overcome it." — Numbers 13:30 (KJV)',
+      },
+      {
+        id: 8, year: "Years 2–40", title: "40 Years of Wilderness Wandering",
+        ref: "Numbers 15–19", icon: "🏜️", category: "journey",
+        summary: "An entire generation wanders the wilderness and dies, except for Caleb and Joshua.",
+        detail: "The faithless generation wanders the Sinai wilderness for 40 years. Korah's rebellion (Numbers 16) sees 250 leaders swallowed by the earth or consumed by fire. The priesthood of Aaron is confirmed by his rod budding overnight (Numbers 17). An entire generation passes away in the wilderness.",
+        verse: '"And your children shall wander in the wilderness forty years...until your carcases be wasted in the wilderness." — Numbers 14:33 (KJV)',
+      },
+      {
+        id: 9, year: "Year 40", title: "Moses Strikes the Rock — Barred from Canaan",
+        ref: "Numbers 20", icon: "🪨", category: "failure",
+        summary: "Moses strikes the rock twice in anger instead of speaking to it. God bars him from the Promised Land.",
+        detail: "At Meribah, the people quarrel over water. God commands Moses to speak to the rock. Instead, in anger, Moses strikes it twice. Water still flows, but God rebukes Moses: he and Aaron will not bring the congregation into the Promised Land. Aaron dies on Mount Hor soon after.",
+        verse: '"Because ye believed me not, to sanctify me in the eyes of the children of Israel, therefore ye shall not bring this congregation into the land." — Numbers 20:12 (KJV)',
+      },
+      {
+        id: 10, year: "Year 40", title: "The Bronze Serpent",
+        ref: "Numbers 21", icon: "🐍", category: "miracle",
+        summary: "God sends fiery serpents; a bronze serpent on a pole brings healing to all who look upon it.",
+        detail: "The people speak against God and Moses. God sends fiery serpents whose bites kill many. God instructs Moses to make a bronze serpent and set it on a pole — any bitten person who looks at it lives. Jesus later uses this as a picture of His crucifixion (John 3:14).",
+        verse: '"And Moses made a serpent of brass, and put it upon a pole...if a serpent had bitten any man, when he beheld the serpent of brass, he lived." — Numbers 21:9 (KJV)',
+      },
+      {
+        id: 11, year: "Year 40", title: "Moses' Final Addresses — Deuteronomy",
+        ref: "Deuteronomy 1–30", icon: "📜", category: "covenant",
+        summary: "Moses delivers three farewell addresses, restating the Law and renewing the covenant with a new generation.",
+        detail: "On the plains of Moab, Moses delivers three great speeches — a historical review, a restatement of the Law including the Shema (Deuteronomy 6:4), and a covenant renewal. He warns of blessings for obedience and curses for disobedience, appoints Joshua as successor, and writes the Law beside the Ark.",
+        verse: '"Hear, O Israel: The LORD our God is one LORD: And thou shalt love the LORD thy God with all thine heart, and with all thy soul, and with all thy might." — Deuteronomy 6:4–5 (KJV)',
+      },
+      {
+        id: 12, year: "Year 40", title: "The Death of Moses on Mount Nebo",
+        ref: "Deuteronomy 34", icon: "✝️", category: "journey",
+        summary: "At 120 years old, Moses views the Promised Land from Mount Nebo, then dies. God Himself buries him.",
+        detail: "Moses climbs Mount Nebo to the top of Pisgah. God shows him the entire Promised Land. Moses dies at 120 years old, 'his eye was not dim, nor his natural force abated.' God Himself buries Moses in a valley in Moab, but no man knows the location of his grave. Joshua succeeds him and Israel mourns 30 days.",
+        verse: '"So Moses the servant of the LORD died there in the land of Moab, according to the word of the LORD." — Deuteronomy 34:5 (KJV)',
+      },
+    ];
+
+    const categoryColors = {
+      miracle:  { dot: "#f5a623", border: "#f5a623", label: "Miracle" },
+      covenant: { dot: "#2980b9", border: "#2980b9", label: "Covenant" },
+      failure:  { dot: "#c0392b", border: "#c0392b", label: "Rebellion" },
+      provision:{ dot: "#27ae60", border: "#27ae60", label: "Provision" },
+      journey:  { dot: "#8e44ad", border: "#8e44ad", label: "Journey" },
+    };
+
+    function App() {
+      const [selected, setSelected] = React.useState(null);
+
+      return (
+        <div style={{
+          fontFamily: "'Georgia','Times New Roman',serif",
+          background: "linear-gradient(160deg,#1a120b 0%,#2c1a0e 40%,#1a120b 100%)",
+          minHeight: "100vh", color: "#f0e6d3",
+        }}>
+          <div style={{ maxWidth: 760, margin: "0 auto", padding: "40px 20px 60px" }}>
+
+            {/* Header */}
+            <div style={{ textAlign: "center", marginBottom: 48 }}>
+              <div style={{ fontSize: 13, letterSpacing: 6, color: "#c9a96e", textTransform: "uppercase", marginBottom: 10 }}>
+                KJV Bible Study
+              </div>
+              <h1 style={{ fontSize: "clamp(28px,5vw,46px)", fontWeight: "normal", color: "#f5deb3", margin: "0 0 8px", letterSpacing: 1, lineHeight: 1.2, textShadow: "0 2px 20px rgba(197,143,70,0.4)" }}>
+                The Journey of Moses
+              </h1>
+              <div style={{ color: "#a07850", fontSize: 15, fontStyle: "italic" }}>
+                From the Exodus out of Egypt unto his death — Exodus 7 to Deuteronomy 34
+              </div>
+              <div style={{ width: 80, height: 1, background: "linear-gradient(90deg,transparent,#c9a96e,transparent)", margin: "20px auto 0" }} />
+            </div>
+
+            {/* Legend */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 10, justifyContent: "center", marginBottom: 36 }}>
+              {Object.entries(categoryColors).map(([key, val]) => (
+                <div key={key} style={{ display: "flex", alignItems: "center", gap: 6, background: "rgba(255,255,255,0.05)", borderRadius: 20, padding: "4px 12px", fontSize: 12, color: "#d4b896" }}>
+                  <div style={{ width: 8, height: 8, borderRadius: "50%", background: val.dot }} />
+                  {val.label}
+                </div>
+              ))}
+            </div>
+
+            {/* Timeline */}
+            <div style={{ position: "relative" }}>
+              <div style={{ position: "absolute", left: 28, top: 0, bottom: 0, width: 2, background: "linear-gradient(180deg,transparent,#c9a96e 5%,#c9a96e 95%,transparent)" }} />
+
+              {events.map((ev, i) => {
+                const cat = categoryColors[ev.category];
+                const isSelected = selected === i;
+                return (
+                  <div key={ev.id} style={{ position: "relative", marginBottom: 8 }}>
+                    {/* Dot */}
+                    <div style={{ position: "absolute", left: 20, top: 22, width: 18, height: 18, borderRadius: "50%", background: cat.dot, border: `2px solid ${isSelected ? "#f5deb3" : cat.dot}`, boxShadow: isSelected ? `0 0 12px ${cat.dot}` : `0 0 6px ${cat.dot}80`, zIndex: 2, transition: "all 0.2s" }} />
+
+                    {/* Card */}
+                    <div
+                      onClick={() => setSelected(isSelected ? null : i)}
+                      style={{ marginLeft: 52, background: isSelected ? "rgba(255,255,255,0.09)" : "rgba(255,255,255,0.04)", border: `1px solid ${isSelected ? cat.border : "rgba(197,143,70,0.2)"}`, borderRadius: 10, padding: "14px 18px", cursor: "pointer", transition: "all 0.25s ease", boxShadow: isSelected ? "0 4px 24px rgba(0,0,0,0.4)" : "none" }}
+                    >
+                      <div style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
+                        <div style={{ fontSize: 26, lineHeight: 1, flexShrink: 0, marginTop: 2 }}>{ev.icon}</div>
+                        <div style={{ flex: 1 }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+                            <span style={{ fontSize: 10, letterSpacing: 3, textTransform: "uppercase", color: cat.dot, fontFamily: "sans-serif" }}>{ev.year}</span>
+                            <span style={{ fontSize: 10, background: cat.dot + "30", color: cat.dot, padding: "1px 8px", borderRadius: 10, fontFamily: "sans-serif", letterSpacing: 1 }}>{ev.ref}</span>
+                          </div>
+                          <div style={{ fontSize: 17, fontWeight: "bold", color: "#f5deb3", marginTop: 3, marginBottom: 4 }}>{ev.title}</div>
+                          <div style={{ fontSize: 13, color: "#b89a78", lineHeight: 1.5 }}>{ev.summary}</div>
+                        </div>
+                        <div style={{ color: "#c9a96e", fontSize: 18, flexShrink: 0, transform: isSelected ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.25s" }}>▾</div>
+                      </div>
+
+                      {isSelected && (
+                        <div className="fade-in" style={{ marginTop: 16, paddingTop: 16, borderTop: "1px solid rgba(197,143,70,0.2)" }}>
+                          <p style={{ fontSize: 14, color: "#d4b896", lineHeight: 1.8, margin: "0 0 16px" }}>{ev.detail}</p>
+                          <div style={{ background: "rgba(0,0,0,0.3)", borderLeft: `3px solid ${cat.border}`, padding: "10px 16px", borderRadius: "0 8px 8px 0" }}>
+                            <div style={{ fontSize: 13, fontStyle: "italic", color: "#e8d5b8", lineHeight: 1.7 }}>{ev.verse}</div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div style={{ textAlign: "center", marginTop: 48, color: "#6b4f35", fontSize: 12, fontStyle: "italic" }}>
+              Tap any event to expand details &amp; scripture reference
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</body>
+</html>

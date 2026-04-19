@@ -1,3 +1,5 @@
+# 📖 Titus Chapter 1 (KJV)
+
 ## 📜 Chapter 1 Structure at a Glance
 
 | Section | Verses | Title |
