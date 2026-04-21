@@ -219,7 +219,3 @@
 
 > *"Yet the number of the children of Israel shall be as the sand of the sea...and it shall be said unto them, Ye are the sons of the living God."*
 > — **Hosea 1:10 (KJV)**
-
----
-
-Shall we continue to **Hosea Chapter 2**, or would you like to dig deeper into any verse or theme in Chapter 1? 📖
