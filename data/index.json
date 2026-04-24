@@ -5,7 +5,8 @@
       "name": "Hosea",
       "testament": "OT",
       "chapters": [
-        { "id": "1", "title": "Chapter 1" }
+        { "id": "1", "title": "Chapter 1" },
+        { "id": "2", "title": "Chapter 2" }
       ]
     },
     {
