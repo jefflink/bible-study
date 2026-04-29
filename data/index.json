@@ -49,6 +49,12 @@
       "description": "An interactive chronological overview of events based on Moses account during Israel Exodus."
     },
     {
+      "id": "endtimes-timeline",
+      "title": "Prophecy of the End Times",
+      "href": "data/interactive/endtimes-timeline.html",
+      "description": "A chronological overview of the end time prophecy."
+    },
+    {
       "id": "maps",
       "title": "Maps of the Holy Land",
       "href": "data/interactive/maps.html",

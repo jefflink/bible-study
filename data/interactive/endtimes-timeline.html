@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prophecy of the End Times – KJV Bible Study</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: linear-gradient(160deg, #1a120b 0%, #2c1a0e 40%, #1a120b 100%);
+      min-height: 100vh;
+      color: #f0e6d3;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-in { animation: fadeIn 0.25s ease; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #1a120b; }
+    ::-webkit-scrollbar-thumb { background: #5a3e1b; border-radius: 3px; }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+
+const phases = [
+  { id:"signs",      label:"Signs of the Last Days",          color:"#c9a96e" },
+  { id:"rapture",    label:"The Rapture & Heavenly Events",   color:"#a8d4c0" },
+  { id:"trib1",      label:"First 3½ Years — False Peace",    color:"#d4a86e" },
+  { id:"trib2",      label:"Last 3½ Years — Great Tribulation", color:"#c06050" },
+  { id:"coming",     label:"Second Coming & Armageddon",      color:"#e8c44a" },
+  { id:"millennium", label:"The Millennium — 1,000 Years",    color:"#9a8fd4" },
+  { id:"eternity",   label:"Final Judgment & New Creation",   color:"#d4c89f" },
+];
+
+const events = [
+  // ── SIGNS ────────────────────────────────────────────────────────────────
+  {
+    id:1, phase:"signs", icon:"⚠️", year:"Present Age",
+    title:"Signs of the Last Days",
+    ref:"Matthew 24:3–14; 2 Timothy 3:1–5; Luke 21:24–28",
+    summary:"Before the end, Jesus warns that false christs, wars, famines, pestilences, and earthquakes shall multiply as the beginning of sorrows. The love of many shall wax cold, lawlessness shall abound, and the gospel shall be preached in all the world for a witness — and then shall the end come. Men shall be lovers of themselves, boasters, proud, blasphemers, and despisers of those that are good, having a form of godliness but denying the power thereof.",
+    detail:"When the disciples ask Jesus of the signs of His coming and of the end of the age, He warns of a cascade of conditions: false christs deceiving many, wars and rumours of wars, nation rising against nation, famines, pestilences, and earthquakes in divers places — all these He calls 'the beginning of sorrows.' His disciples shall be hated of all nations for His name's sake; many shall be offended, betray one another, and false prophets shall arise. Paul, writing to Timothy, describes the last days as 'perilous' — men shall be lovers of their own selves, covetous, boasters, proud, blasphemers, disobedient to parents, unthankful, unholy, without natural affection, trucebreakers, false accusers, incontinent, fierce, despisers of those that are good. They shall have a form of godliness but deny the power thereof. The great sign of Israel: Jesus says of Jerusalem that it shall be trodden down of the Gentiles until the times of the Gentiles be fulfilled — signalling that Israel's national restoration is itself a prophetic marker pointing to the nearness of His return.",
+    verse:'"And ye shall hear of wars and rumours of wars: see that ye be not troubled: for all these things must come to pass, but the end is not yet." — Matthew 24:6 (KJV)',
+  },
+  {
+    id:2, phase:"signs", icon:"🌿", year:"Present Age",
+    title:"Israel Restored — The Fig Tree Generation",
+    ref:"Ezekiel 37:1–14; Matthew 24:32–34; Romans 11:25–27",
+    summary:"The restoration of the nation of Israel to her land is one of the most significant prophetic signs of the end times. Ezekiel's vision of the valley of dry bones — the house of Israel scattered among the nations — coming together, receiving flesh and breath, foreshadows Israel's national regathering. Jesus' parable of the fig tree teaches that when the fig tree putteth forth her leaves, the generation that witnesses it shall not pass until all things are fulfilled.",
+    detail:"Ezekiel sees a valley of dry bones — the whole house of Israel — scattered and very dry. At God's command they come together, bone to bone; sinew and flesh cover them and breath enters them. God declares: 'I will open your graves, and cause you to come up out of your graves, and bring you into the land of Israel.' This prophetic vision points to Israel's national restoration as a necessary precondition for the fulfilment of Daniel's 70th week. The Apostle Paul writes that blindness in part has happened to Israel until the fulness of the Gentiles be come in — and so all Israel shall be saved. Jesus' parable of the fig tree in Matthew 24 teaches that when the tender branch shoots forth its leaves, summer — and therefore the end — is nigh. Israel's re-establishment as a nation is thus regarded in pre-millennial theology as the great clock of prophecy beginning its final ticking.",
+    verse:'"Now learn a parable of the fig tree; When his branch is yet tender, and putteth forth leaves, ye know that summer is nigh: So likewise ye, when ye shall see all these things, know that it is near, even at the doors." — Matthew 24:32–33 (KJV)',
+  },
+  // ── RAPTURE ──────────────────────────────────────────────────────────────
+  {
+    id:3, phase:"rapture", icon:"⬆️", year:"At the Rapture",
+    title:"The Rapture — Christ Catches Up His Saints",
+    ref:"1 Thessalonians 4:13–18; 1 Corinthians 15:51–53; John 14:1–3",
+    summary:"Before the judgments of the Tribulation begin, the Lord Himself shall descend from heaven with a shout, with the voice of the archangel, and with the trump of God — the dead in Christ shall rise first, and the living saints shall be caught up together with them in the clouds to meet the Lord in the air. In a moment, in the twinkling of an eye, the mortal shall put on immortality, fulfilling Christ's promise: 'I go to prepare a place for you... I will come again, and receive you unto myself.'",
+    detail:"Paul writes to the Thessalonians who grieve for those who have died in Christ, assuring them that the dead in Christ shall rise first at His coming. The Lord Himself shall descend from heaven with a shout, with the voice of the archangel, and with the trump of God. Then those who are alive and remain shall be caught up together with them in the clouds to meet the Lord in the air — and so shall they ever be with the Lord. Paul also writes to the Corinthians that this shall happen 'in a moment, in the twinkling of an eye' at the last trump — the dead shall be raised incorruptible, and the living shall be changed. This mortal shall put on immortality and death shall be swallowed up in victory. In John 14, Jesus Himself promises: 'I go to prepare a place for you. And if I go and prepare a place for you, I will come again, and receive you unto myself; that where I am, there ye may be also.' Pre-millennial theology holds that this event — distinct from the visible Second Coming — removes the Church before the wrath of the Tribulation is poured out.",
+    verse:'"For the Lord himself shall descend from heaven with a shout, with the voice of the archangel, and with the trump of God: and the dead in Christ shall rise first: Then we which are alive and remain shall be caught up together with them in the clouds, to meet the Lord in the air." — 1 Thessalonians 4:16–17 (KJV)',
+  },
+  {
+    id:4, phase:"rapture", icon:"🏆", year:"In Heaven",
+    title:"The Bema Seat — Judgment Seat of Christ",
+    ref:"2 Corinthians 5:10; 1 Corinthians 3:11–15; Romans 14:10–12",
+    summary:"Following the Rapture, every believer must stand before the Judgment Seat of Christ — not for condemnation, which Christ bore at Calvary, but for an accounting of the deeds done in the body. Each man's work shall be tried as by fire: that which endures — gold, silver, precious stones — shall receive a reward; that which is consumed — wood, hay, stubble — shall suffer loss, though the man himself shall be saved, yet so as by fire. Every tongue shall confess and every knee bow before the Lord.",
+    detail:"Paul declares to the Corinthians that we must all appear before the judgment seat of Christ, that every one may receive the things done in his body, according to that he hath done, whether it be good or bad. This is not a judgment for sin — the believer's sins are covered by the blood of Christ — but a judgment of works, of faithfulness in service. Paul uses the metaphor of a builder: every man's work shall be made manifest, for the day shall declare it, because it shall be revealed by fire. If any man's work abides, he shall receive a reward; if it be burned, he shall suffer loss but himself be saved. This motivates the believer to holy living and faithful service, knowing that stewardship of time, talents, and testimony shall all be reckoned before the Lord.",
+    verse:'"For we must all appear before the judgment seat of Christ; that every one may receive the things done in his body, according to that he hath done, whether it be good or bad." — 2 Corinthians 5:10 (KJV)',
+  },
+  {
+    id:5, phase:"rapture", icon:"💍", year:"In Heaven",
+    title:"The Marriage Supper of the Lamb",
+    ref:"Revelation 19:7–9; John 3:29; 2 Corinthians 11:2",
+    summary:"While the Tribulation rages upon the earth, the redeemed Church — presented as the Bride of Christ — is united with the Lamb in the Marriage Supper of heaven. The Bride hath made herself ready, arrayed in fine linen, clean and white, which is the righteousness of saints. Blessed and called are those who are bidden to this great supper, which consummates the eternal covenant between Christ and His Church before He returns to earth in power and glory.",
+    detail:"The Apostle John hears a great voice of a great multitude in heaven, saying: 'Alleluia: for the Lord God omnipotent reigneth. Let us be glad and rejoice, and give honour to him: for the marriage of the Lamb is come, and his wife hath made herself ready.' The Bride is arrayed in fine linen, clean and white — which John identifies as 'the righteousness of saints.' The angel declares: 'Blessed are they which are called unto the marriage supper of the Lamb.' Paul, writing to the Corinthians, presents himself as a friend of the Bridegroom: 'I have espoused you to one husband, that I may present you as a chaste virgin to Christ.' Throughout Scripture the Church is the Bride, Christ is the Bridegroom, and the Marriage Supper in heaven represents the consummation of the redemptive relationship before the Lord descends with His saints to reign upon the earth.",
+    verse:'"And he saith unto me, Write, Blessed are they which are called unto the marriage supper of the Lamb." — Revelation 19:9 (KJV)',
+  },
+  // ── TRIB 1 ───────────────────────────────────────────────────────────────
+  {
+    id:6, phase:"trib1", icon:"📜", year:"Tribulation Year 1",
+    title:"Daniel's 70th Week — The Antichrist's Covenant",
+    ref:"Daniel 9:24–27; Revelation 6:1–2; Daniel 7:24–25",
+    summary:"With the Church removed, the final seven-year period of Daniel's prophecy — the 70th Week — commences. A powerful political figure, the Antichrist, emerges from among the nations and makes a firm covenant with Israel for seven years, appearing as a great peacemaker. He rides forth on a white horse bearing a bow with no arrows — a conqueror without open war — and is given a crown: the world's false messiah, receiving the adoration that belongs to Christ alone.",
+    detail:"Daniel's prophecy of 70 weeks (Daniel 9:24–27) reveals that 70 weeks of years — 490 years — are determined upon the people of Israel and the holy city. Sixty-nine weeks (483 years) ran from the decree to restore Jerusalem to the cutting off of Messiah the Prince. One week (7 years) remains — the 70th week, which commences when 'the prince that shall come' makes a covenant with many for one week. This prince is widely understood in pre-millennial theology as the Antichrist — the man of sin, the son of perdition. In Revelation 6, the Lamb opens the first seal and a rider on a white horse goes forth conquering — a false peace established by the world's most deceptive leader. Daniel further describes him as a little horn who shall speak great words against the Most High and think to change times and laws.",
+    verse:'"And he shall confirm the covenant with many for one week: and in the midst of the week he shall cause the sacrifice and the oblation to cease." — Daniel 9:27 (KJV)',
+  },
+  {
+    id:7, phase:"trib1", icon:"🕎", year:"Tribulation Years 1–3.5",
+    title:"The 144,000 Sealed & The Innumerable Multitude",
+    ref:"Revelation 7:1–17; Revelation 14:1–5",
+    summary:"At the opening of the Tribulation, God seals 144,000 servants — twelve thousand from each of the twelve tribes of Israel — upon their foreheads with the seal of the living God, preserving them from the coming judgments to serve as His witnesses upon the earth. Beside them, John also beholds a great multitude which no man can number, from all nations and kindreds and peoples and tongues, standing before the throne clothed in white robes — souls who come out of the Great Tribulation, having washed their robes in the blood of the Lamb.",
+    detail:"Before the winds of divine judgment are released upon the earth, four angels hold them back while another angel ascends from the east with the seal of the living God. He cries: 'Hurt not the earth, neither the sea, nor the trees, till we have sealed the servants of our God in their foreheads.' Twelve thousand are sealed from each tribe of Israel — Judah, Reuben, Gad, Asher, Naphtali, Manasseh, Simeon, Levi, Issachar, Zebulun, Joseph, and Benjamin — totalling 144,000. Later in Revelation 14 they stand with the Lamb on Mount Sion, having His Father's name written on their foreheads. These are they who were not defiled — first fruits unto God and to the Lamb. Alongside this, John sees the great innumerable multitude of the redeemed from every nation who come out of great tribulation — testimonies that God's grace reaches even into the darkest days of human history.",
+    verse:'"And I heard the number of them which were sealed: and there were sealed an hundred and forty and four thousand of all the tribes of the children of Israel." — Revelation 7:4 (KJV)',
+  },
+  {
+    id:8, phase:"trib1", icon:"🔥", year:"Tribulation Years 1–3.5",
+    title:"The Two Witnesses",
+    ref:"Revelation 11:3–12; Zechariah 4:11–14; Malachi 4:5",
+    summary:"God appoints two witnesses who prophesy for 1,260 days — the first half of the Tribulation — clothed in sackcloth, standing before the God of the whole earth. They have power to shut heaven that it rain not, to turn waters to blood, and to smite the earth with plagues as often as they will. When they have finished their testimony, the beast from the bottomless pit makes war against them and kills them — but after three and a half days, the breath of life from God enters them and they ascend to heaven in a cloud before their enemies.",
+    detail:"These two witnesses — widely identified in pre-millennial teaching with Moses and Elijah, or Enoch and Elijah, given they did not experience ordinary death — are described as two olive trees and two candlesticks standing before the God of the earth. Their ministry parallels Elijah's (shutting heaven from rain) and Moses' (turning water to blood and striking with plagues). Fire proceeds from their mouths to devour their enemies. The whole world witnesses their death; those that dwell upon the earth rejoice and make merry and send gifts to one another because these two prophets tormented them. But after three and a half days they are resurrected and called up to heaven in a cloud. A great earthquake follows, slaying seven thousand, and the remnant gives glory to the God of heaven. Their ministry represents God's gracious provision of testimony and witness even in the darkest hour of the Tribulation.",
+    verse:'"And I will give power unto my two witnesses, and they shall prophesy a thousand two hundred and threescore days, clothed in sackcloth." — Revelation 11:3 (KJV)',
+  },
+  {
+    id:9, phase:"trib1", icon:"🌪️", year:"Tribulation Years 1–3.5",
+    title:"The Seven Seal & Trumpet Judgments",
+    ref:"Revelation 6; 8–9; Matthew 24:6–7",
+    summary:"As the Lamb opens the seven seals, the earth is progressively convulsed with war, famine, death, and cosmic disturbance. The first four seals release the Four Horsemen — false peace, war, famine, and death — claiming a quarter of the earth. The fifth reveals martyred souls beneath the altar crying for justice; the sixth unleashes a great earthquake and signs in the sun, moon, and stars. The seven trumpets then intensify the judgments: hail and fire mingled with blood, a great burning mountain cast into the sea, a star called Wormwood poisoning the waters, and demonic locusts tormenting men for five months.",
+    detail:"The opening of the seven seals unleashes progressive divine judgment upon the earth: (1) The rider on the white horse — false peace; (2) the red horse — war; (3) the black horse — famine; (4) the pale horse — Death and Hell, slaying a quarter of the earth by sword, hunger, death, and beasts; (5) the souls of martyred saints beneath the heavenly altar, crying: 'How long, O Lord, holy and true, dost thou not judge and avenge our blood?'; (6) a great earthquake — the sun becomes black, the moon as blood, stars fall, mountains and islands flee. At the seventh seal, seven trumpets are revealed: (1) hail and fire with blood burning a third of the earth; (2) a burning mountain cast into the sea; (3) the star Wormwood makes a third of the waters bitter; (4) a third of sun, moon, and stars darkened; (5) locusts with scorpion-like power torment men five months; (6) four angels loosed at the Euphrates slaying a third of mankind. The sixth trumpet alone accounts for the death of one third of the world's population.",
+    verse:'"And I looked, and behold a pale horse: and his name that sat on him was Death, and Hell followed with him. And power was given unto them over the fourth part of the earth." — Revelation 6:8 (KJV)',
+  },
+  // ── TRIB 2 ───────────────────────────────────────────────────────────────
+  {
+    id:10, phase:"trib2", icon:"💀", year:"Tribulation Year 3.5",
+    title:"The Abomination of Desolation — Mid-Tribulation",
+    ref:"Daniel 9:27; Matthew 24:15; 2 Thessalonians 2:3–4; Revelation 13:5–6",
+    summary:"At the midpoint of the seven years, the Antichrist breaks his covenant with Israel and commits the Abomination of Desolation — entering the rebuilt Temple in Jerusalem and setting himself up as God, demanding worship from the whole world. Daniel foretold he would cause the sacrifice and oblation to cease; Paul calls him 'the man of sin, the son of perdition, who opposeth and exalteth himself above all that is called God.' Jesus Himself warns: 'When ye therefore shall see the abomination of desolation...then let them which be in Judaea flee into the mountains.'",
+    detail:"At the mid-point of Daniel's 70th week — three and a half years in — the Antichrist's mask is fully removed. He breaks the covenant he made with Israel, causes the Temple sacrifices to cease, and seats himself in the Temple of God, 'shewing himself that he is God' (2 Thessalonians 2:4). This is the Abomination of Desolation foretold by Daniel (9:27; 11:31; 12:11) and referenced by Jesus in Matthew 24:15: 'When ye therefore shall see the abomination of desolation, spoken of by Daniel the prophet, stand in the holy place, (whoso readeth, let him understand:) Then let them which be in Judaea flee into the mountains.' Paul describes this man of sin as one 'whose coming is after the working of Satan with all power and signs and lying wonders.' Daniel 7:25 says he shall 'speak great words against the most High, and shall wear out the saints of the most High, and think to change times and laws.' This mid-point event marks the beginning of the worst period of human suffering the world has ever seen.",
+    verse:'"Who opposeth and exalteth himself above all that is called God, or that is worshipped; so that he as God sitteth in the temple of God, shewing himself that he is God." — 2 Thessalonians 2:4 (KJV)',
+  },
+  {
+    id:11, phase:"trib2", icon:"🔖", year:"Tribulation Years 3.5–7",
+    title:"The Beast, The False Prophet & The Mark",
+    ref:"Revelation 13:1–18; Revelation 14:9–11",
+    summary:"Two beasts now arise to dominate the earth: the Antichrist — a beast rising from the sea with seven heads and ten horns — is given his power by the dragon, and the whole world worships him. A second beast rises from the earth, the False Prophet, who performs great signs and causes all — both small and great, rich and poor, free and bond — to receive the mark of the beast in their right hand or foreheads. Without this mark, no man may buy or sell. Those who receive it are without remedy: they shall drink of the wine of the wrath of God.",
+    detail:"John sees a beast rise up out of the sea — ten horns and seven heads, with ten crowns upon his horns. The dragon gives him his power, his seat, and great authority. The whole earth wonders after the beast: 'Who is like unto the beast? who is able to make war with him?' Power is given him for forty and two months (3.5 years). He opens his mouth in blasphemy against God, against His name, and against His tabernacle. A second beast rises from the earth — the False Prophet — who performs great wonders including calling fire from heaven, and causes the earth to worship the first beast. He causes all to receive a mark — the number 666, the number of a man — in their right hand or forehead. Without this mark none may buy or sell. But the angel warns with a loud voice: 'If any man worship the beast and his image, and receive his mark in his forehead, or in his hand, the same shall drink of the wine of the wrath of God.' For all who resist and are martyred, a great reward is promised.",
+    verse:'"And he causeth all, both small and great, rich and poor, free and bond, to receive a mark in their right hand, or in their foreheads: And that no man might buy or sell, save he that had the mark, or the name of the beast, or the number of his name." — Revelation 13:16–17 (KJV)',
+  },
+  {
+    id:12, phase:"trib2", icon:"🏃", year:"Tribulation Years 3.5–7",
+    title:"Israel's Flight & The Great Tribulation",
+    ref:"Matthew 24:15–22; Revelation 12:6; Zechariah 13:8–9; Daniel 12:1",
+    summary:"At the Abomination of Desolation, Jesus commands those in Judaea to flee immediately to the mountains without delay — for then shall begin the Great Tribulation, such as was not since the beginning of the world to this time, no, nor ever shall be. Revelation 12 shows the woman — Israel — fleeing into the wilderness where God prepares a place to nourish her for 1,260 days. Two thirds of Israel shall fall under the sword; the remaining third shall be brought through the fire and refined as silver, until they call upon the name of the Lord.",
+    detail:"Jesus warns in Matthew 24 that when the Abomination of Desolation is seen, those in Judaea must flee to the mountains immediately — not even returning to the house to take their clothes. He urges prayer that the flight be not in winter nor on the sabbath, for then shall be Great Tribulation such as was not since the beginning of the world. Except those days should be shortened, no flesh would be saved — but for the elect's sake those days shall be shortened. Revelation 12 depicts a great wonder in heaven — a woman clothed with the sun (Israel) flees into the wilderness from a great red dragon (Satan), where God has prepared a place of refuge for her for 1,260 days. Zechariah 13:8–9 prophesies that two parts in the land shall be cut off and die, but the third part shall be brought through the fire: 'I will refine them as silver is refined...they shall call on my name, and I will hear them: I will say, It is my people: and they shall say, The LORD is my God.' Daniel 12:1 calls this 'a time of trouble, such as never was since there was a nation.'",
+    verse:'"For then shall be great tribulation, such as was not since the beginning of the world to this time, no, nor ever shall be. And except those days should be shortened, there should no flesh be saved." — Matthew 24:21–22 (KJV)',
+  },
+  {
+    id:13, phase:"trib2", icon:"🥣", year:"Tribulation Years 3.5–7",
+    title:"The Seven Bowls of God's Wrath",
+    ref:"Revelation 15–16; Revelation 14:10",
+    summary:"Seven angels pour out the seven golden bowls of the wrath of God upon the earth — the final and most concentrated sequence of divine judgment. Grievous sores afflict those who have the mark of the beast; the sea turns to blood and every living soul in it dies; the sun scorches men with great heat; the kingdom of the beast is full of darkness; the great river Euphrates dries up to prepare the way for the kings of the east; and the seventh bowl brings the greatest earthquake since man was upon the earth, splitting Babylon into three parts and causing the cities of the nations to fall.",
+    detail:"Seven angels come out of the temple of heaven, clothed in pure and white linen, bearing the seven last plagues — in them is filled up the wrath of God. The first bowl brings a grievous sore upon those who have the mark of the beast. The second turns the sea to blood as of a dead man, and every living soul in the sea dies. The third turns the rivers and fountains to blood. The fourth gives the sun power to scorch men with fire — and they blaspheme the name of God and repent not. The fifth is poured upon the seat of the beast — his kingdom is full of darkness; they gnaw their tongues for pain. The sixth dries up the great Euphrates to prepare the way of the kings of the east; unclean spirits like frogs gather the kings of all the earth to the battle of Armageddon. The seventh pours out upon the air — a great voice: 'It is done.' A great earthquake such as was not since men were upon the earth; great Babylon is divided into three and the cities of the nations fall; great hail the weight of a talent falls upon men.",
+    verse:'"And I heard a great voice out of the temple saying to the seven angels, Go your ways, and pour out the vials of the wrath of God upon the earth." — Revelation 16:1 (KJV)',
+  },
+  // ── COMING ───────────────────────────────────────────────────────────────
+  {
+    id:14, phase:"coming", icon:"⚡", year:"End of Tribulation",
+    title:"The Second Coming of Christ in Glory",
+    ref:"Matthew 24:29–31; Revelation 19:11–16; Zechariah 14:3–4; Acts 1:11",
+    summary:"Immediately after the tribulation of those days, the sun is darkened, the moon withdraweth her light, the stars fall from heaven, and the sign of the Son of man appears in the sky — every eye shall see Him. Heaven opens and Christ descends upon a white horse, His eyes as a flame of fire, wearing many crowns, clothed with a vesture dipped in blood. The armies of heaven follow Him on white horses. He treads the winepress of the fierceness and wrath of Almighty God, and His name is called The Word of God. His feet shall stand in that day upon the Mount of Olives.",
+    detail:"Matthew 24 records: 'Immediately after the tribulation of those days shall the sun be darkened, and the moon shall not give her light, and the stars shall fall from heaven, and the powers of the heavens shall be shaken: And then shall appear the sign of the Son of man in heaven: and then shall all the tribes of the earth mourn, and they shall see the Son of man coming in the clouds of heaven with power and great glory.' Revelation 19:11–16 describes heaven opened and a white horse — He that sat upon it is called Faithful and True. His eyes are as a flame of fire; on His head are many crowns; His name is the Word of God. The armies of heaven follow Him on white horses, clothed in fine linen, white and clean. Out of His mouth goes a sharp sword to smite the nations. He rules with a rod of iron. He treads the winepress of the fierceness of the wrath of Almighty God. On His vesture and on His thigh is written: KING OF KINGS, AND LORD OF LORDS. Zechariah 14:4 declares: 'And his feet shall stand in that day upon the mount of Olives, which is before Jerusalem on the east.'",
+    verse:'"And I saw heaven opened, and behold a white horse; and he that sat upon him was called Faithful and True...and his name is called The Word of God." — Revelation 19:11, 13 (KJV)',
+  },
+  {
+    id:15, phase:"coming", icon:"⚔️", year:"End of Tribulation",
+    title:"The Battle of Armageddon",
+    ref:"Revelation 16:16; 19:17–21; Zechariah 14:1–3; Joel 3:9–14",
+    summary:"The kings of the whole world are gathered by demonic spirits to the great battle of Armageddon — the valley of Megiddo and the plains of Israel — for the day of God Almighty. The nations are assembled against Jerusalem; the city is taken and the houses rifled. Then the LORD goes forth and fights against those nations. An angel standing in the sun cries to all the fowls of heaven to gather to the great supper of God to eat the flesh of kings and captains — for the beast and the kings of the earth and their armies are gathered together to make war against Christ.",
+    detail:"The sixth bowl dries the Euphrates River and three unclean spirits like frogs go forth from the dragon, the beast, and the false prophet — spirits of devils working miracles — to gather the kings of the earth to the battle of the great day of God Almighty. They are gathered to a place called in the Hebrew tongue Armageddon (Har-Megiddo). Zechariah 14 describes the nations gathered against Jerusalem, the city taken, and the houses rifled — then the LORD goes forth and fights against those nations, as when He fought in the day of battle. His feet stand upon the Mount of Olives and it cleaves in two. Joel 3:9–14 speaks of the valley of Jehoshaphat where God will sit to judge all the heathen: 'Multitudes, multitudes in the valley of decision: for the day of the LORD is near in the valley of decision.' The Lord then descends with the sharp sword of His mouth — the battle is not a prolonged war but a decisive, instantaneous act of sovereign power.",
+    verse:'"And he gathered them together into a place called in the Hebrew tongue Armageddon." — Revelation 16:16 (KJV)',
+  },
+  {
+    id:16, phase:"coming", icon:"🗡️", year:"End of Tribulation",
+    title:"The Beast & False Prophet Cast into the Lake of Fire",
+    ref:"Revelation 19:20–21; Daniel 7:11; 2 Thessalonians 2:8",
+    summary:"The beast is taken, and with him the False Prophet that wrought miracles before him — they are both cast alive into the lake of fire burning with brimstone, becoming the first occupants of that place of final judgment. Paul had foretold that the Lord shall consume the Wicked one with the spirit of His mouth and shall destroy him with the brightness of His coming. The remnant of their armies is slain with the sword that proceedeth from the mouth of Him that sat upon the horse, and all the fowls are filled with their flesh.",
+    detail:"At the return of Christ, the beast (Antichrist) and the False Prophet are taken — seized in the very moment of their assembled power. They are cast alive into a lake of fire burning with brimstone. This is a remarkable detail: they are the first to be cast into the lake of fire — before even Satan, before the final judgment. Paul writes in 2 Thessalonians 2:8 that the Lord shall consume 'that Wicked' with the spirit of His mouth and destroy him with the brightness of His coming. Daniel 7:11 had prophesied this: 'I beheld then because of the voice of the great words which the horn spake: I beheld even till the beast was slain, and his body destroyed, and given to the burning flame.' The armies of the nations assembled at Armageddon are slain by the sword proceeding from the mouth of Christ — the word of His power — and the fowls of the air are filled with their flesh at the great supper of God.",
+    verse:'"And the beast was taken, and with him the false prophet...These both were cast alive into a lake of fire burning with brimstone." — Revelation 19:20 (KJV)',
+  },
+  // ── MILLENNIUM ────────────────────────────────────────────────────────────
+  {
+    id:17, phase:"millennium", icon:"⛓️", year:"Year 0 of Millennium",
+    title:"Satan Bound in the Bottomless Pit",
+    ref:"Revelation 20:1–3; Isaiah 24:21–22",
+    summary:"An angel comes down from heaven holding the key of the bottomless pit and a great chain. He lays hold on the dragon — that old serpent, which is the Devil and Satan — and binds him for a thousand years, casting him into the bottomless pit, shutting it up, and setting a seal upon it that he should deceive the nations no more until the thousand years are fulfilled. For the first time since Eden, the great Deceiver is removed from the earth and his influence over the nations completely restrained.",
+    detail:"The binding of Satan is the necessary precondition for the establishment of Christ's millennial kingdom. An angel — equipped with the key of the bottomless pit and a great chain — seizes the dragon, that old serpent, the Devil and Satan, and binds him for one thousand years. He is cast into the abyss, which is shut and sealed over him. John emphasises the purpose: 'that he should deceive the nations no more, till the thousand years should be fulfilled: and after that he must be loosed a little season.' Isaiah 24:21–22 foreshadows this: the Lord shall punish the host of the high ones that are on high, and shall shut them up in the prison. The removal of Satan from the world is not the eradication of all sin — for men with sin natures shall enter the Millennium — but it eliminates the external source of supernatural deception and organised rebellion, allowing Christ's righteous government to flourish unhindered for one thousand years.",
+    verse:'"And he laid hold on the dragon, that old serpent, which is the Devil, and Satan, and bound him a thousand years, And cast him into the bottomless pit, and shut him up, and set a seal upon him, that he should deceive the nations no more, till the thousand years should be fulfilled." — Revelation 20:2–3 (KJV)',
+  },
+  {
+    id:18, phase:"millennium", icon:"👑", year:"Years 1–1,000 of Millennium",
+    title:"The First Resurrection & The Millennial Reign of Christ",
+    ref:"Revelation 20:4–6; Isaiah 11:1–9; Zechariah 14:9; Isaiah 65:20–25",
+    summary:"Christ reigns upon the earth for one thousand years from Jerusalem, with the resurrected saints of the Tribulation and the faithful of all ages enthroned with Him in glory. The nations are governed in perfect righteousness and justice; the earth is healed and restored. The wolf shall dwell with the lamb, the leopard shall lie down with the kid, and a little child shall lead them. The knowledge of the LORD shall cover the earth as the waters cover the sea. Israel is fully restored to her land and her God, and all nations shall come to Jerusalem to worship the King.",
+    detail:"John sees thrones set up and those given authority seated upon them — including the souls of those beheaded for the witness of Jesus and the word of God, who had not worshipped the beast nor received his mark. They live and reign with Christ a thousand years. This is the First Resurrection: 'Blessed and holy is he that hath part in the first resurrection: on such the second death hath no power, but they shall be priests of God and of Christ, and shall reign with him a thousand years.' Isaiah 11 paints the millennial age: the earth shall be full of the knowledge of the LORD as the waters cover the sea. The wolf shall dwell with the lamb, the leopard lie down with the kid, the lion eat straw like an ox. Nothing shall hurt nor destroy in all God's holy mountain. Zechariah 14:9 declares: 'And the LORD shall be king over all the earth: in that day shall there be one LORD, and his name one.' Isaiah 65 describes millennial conditions where the child shall die a hundred years old and the sinner be accursed at a hundred years — death exists but greatly restrained, for the curse is not yet fully lifted.",
+    verse:'"Blessed and holy is he that hath part in the first resurrection: on such the second death hath no power, but they shall be priests of God and of Christ, and shall reign with him a thousand years." — Revelation 20:6 (KJV)',
+  },
+  {
+    id:19, phase:"millennium", icon:"👿", year:"End of Millennium",
+    title:"Satan Released — The Final Rebellion of Gog & Magog",
+    ref:"Revelation 20:7–9; Ezekiel 38–39",
+    summary:"When the thousand years are expired, Satan is loosed out of his prison and goes out to deceive the nations which are in the four quarters of the earth — Gog and Magog — gathering them to battle against the beloved city of Jerusalem. The number of the gathered rebels is as the sand of the sea. This final rebellion demonstrates that even one thousand years of perfect, righteous government under Christ cannot change the sinful heart of natural man; salvation is of grace alone. Fire comes down from God out of heaven and devours them.",
+    detail:"The loosing of Satan after the Millennium is a profound demonstration of the total depravity of man. After one thousand years of perfect government under the Lord Jesus Christ, of unparalleled peace and prosperity, with Satan himself removed — yet when Satan is released and begins to deceive, the nations of the earth follow him in rebellion by the multitudes. This proves that environment, education, and even perfect government cannot regenerate the heart; only the sovereign grace of God in the new birth can do so. Satan compasses the camp of the saints about and the beloved city — Jerusalem. But there is no protracted battle: fire comes down from God out of heaven and devours them. The rebellion is instantaneous in its defeat. Ezekiel 38–39 prefigures this gathering of nations against Israel from the north and the four corners of the earth, with God Himself fighting for His people.",
+    verse:'"And when the thousand years are expired, Satan shall be loosed out of his prison, And shall go out to deceive the nations which are in the four quarters of the earth, Gog and Magog, to gather them together to battle." — Revelation 20:7–8 (KJV)',
+  },
+  {
+    id:20, phase:"millennium", icon:"🌋", year:"End of Millennium",
+    title:"Satan Cast into the Lake of Fire",
+    ref:"Revelation 20:10; Matthew 25:41; Isaiah 14:15",
+    summary:"The devil that deceived the nations is cast into the lake of fire and brimstone, where the beast and the false prophet already are — and shall be tormented day and night for ever and ever. This is the final and eternal imprisonment of Satan, the adversary of God and man from the beginning. The lake of fire was prepared for the devil and his angels; their torment has no end and admits no release. Satan's ancient boast — 'I will be like the most High' — ends in everlasting, irreversible judgment.",
+    detail:"After the final rebellion is crushed, the devil himself is taken and cast into the lake of fire and brimstone where the beast and the false prophet are — joining them after one thousand years. And they shall be tormented day and night for ever and ever. This is the eternal, final disposition of Satan. Isaiah 14:15 had prophesied of his fall: 'Yet thou shalt be brought down to hell, to the sides of the pit.' Jesus Himself in Matthew 25:41 speaks of 'everlasting fire, prepared for the devil and his angels.' The lake of fire was not prepared for man — it was prepared for Satan and his host. But those who follow Satan in unbelief shall share his fate. The torment is described as unending: 'for ever and ever' — the same Greek expression used for the eternal reign of God and the eternal life of the saints. There is no cessation, no annihilation, no universalism here — the Scripture is plain and irreducible.",
+    verse:'"And the devil that deceived them was cast into the lake of fire and brimstone, where the beast and the false prophet are, and shall be tormented day and night for ever and ever." — Revelation 20:10 (KJV)',
+  },
+  // ── ETERNITY ─────────────────────────────────────────────────────────────
+  {
+    id:21, phase:"eternity", icon:"⚖️", year:"After the Millennium",
+    title:"The Great White Throne Judgment",
+    ref:"Revelation 20:11–15; John 5:28–29; Daniel 7:9–10",
+    summary:"John sees a great white throne and Him that sat upon it, from whose face the earth and heaven flee away and no place is found for them. The dead — small and great — stand before God; the books are opened, and another book is opened which is the Book of Life. The dead are judged out of those things written in the books, according to their works. Death and Hell are cast into the lake of fire — this is the second death. Whosoever is not found written in the Book of Life is cast into the lake of fire.",
+    detail:"The Great White Throne Judgment is the final judgment of all the unsaved dead of every age. John sees the earth and heaven flee from the presence of Him who sits upon the great white throne — the old creation can no longer stand before the unveiled holiness of God. The sea gives up the dead in it; Death and Hell give up the dead in them. All stand before God. Two categories of books are opened: the books (plural) recording the deeds of every person, and the Book of Life. They are judged every man according to their works — not to determine their degree of sinfulness, for all are sinners, but to demonstrate the perfect justice of their condemnation. No record is missing; no excuse can be offered. Death itself — the last enemy — and Hell (Hades, the realm of the dead) are cast into the lake of fire. This is the second death. Whosoever is not found written in the Book of Life is cast into the lake of fire. Daniel 7:9–10 had seen this: 'the Ancient of days did sit...the judgment was set, and the books were opened.'",
+    verse:'"And I saw a great white throne, and him that sat on it, from whose face the earth and the heaven fled away...And whosoever was not found written in the book of life was cast into the lake of fire." — Revelation 20:11, 15 (KJV)',
+  },
+  {
+    id:22, phase:"eternity", icon:"🌍", year:"Eternal State",
+    title:"The New Heaven & The New Earth",
+    ref:"Revelation 21:1–8; Isaiah 65:17; 2 Peter 3:10–13",
+    summary:"John sees a new heaven and a new earth — for the first heaven and the first earth were passed away, and there was no more sea. The first creation, marred by the fall and the curse, is dissolved with fervent heat and replaced with a creation of surpassing glory. God declares: 'Behold, I make all things new.' He that overcometh shall inherit all things; God Himself shall be his God. But the fearful, unbelieving, abominable, murderers, whoremongers, sorcerers, idolaters, and all liars shall have their part in the lake of fire.",
+    detail:"Peter had written that the day of the Lord will come as a thief, in which the heavens shall pass away with a great noise and the elements shall melt with fervent heat — the earth also and the works therein shall be burned up. Isaiah had foretold: 'For, behold, I create new heavens and a new earth: and the former shall not be remembered, nor come into mind.' John sees the new heaven and the new earth — this is not mere renovation but a new creation: all things new. The sea — symbol of restlessness, chaos, and separation — is no more. The dwelling of God is now with men: He will dwell with them, and they shall be His people, and God Himself shall be with them and be their God. God will wipe away all tears from their eyes; there shall be no more death, neither sorrow nor crying; neither shall there be any more pain — for the former things are passed away. He that sat upon the throne declares: 'Behold, I make all things new...I am Alpha and Omega, the beginning and the end.'",
+    verse:'"And I saw a new heaven and a new earth: for the first heaven and the first earth were passed away; and there was no more sea...Behold, I make all things new." — Revelation 21:1, 5 (KJV)',
+  },
+  {
+    id:23, phase:"eternity", icon:"🏙️", year:"Eternal State",
+    title:"The New Jerusalem — The Holy City",
+    ref:"Revelation 21:9–27; Hebrews 11:10; Galatians 4:26",
+    summary:"John is shown the holy city, New Jerusalem, coming down from God out of heaven, prepared as a bride adorned for her husband — shining with the glory of God, her light like a jasper stone, clear as crystal. Her twelve gates are twelve pearls, her foundations twelve precious stones bearing the names of the twelve apostles, and her streets of pure gold transparent as glass. The city has no need of sun or moon, for the glory of God lightens it, and the Lamb is the lamp thereof. The nations walk in the light of it, and the kings of the earth bring their glory and honour into it.",
+    detail:"The New Jerusalem is a city of breathtaking dimensions: 12,000 furlongs (approximately 1,400 miles) in length, breadth, and height — whether a cube or a pyramid, its scale speaks of unlimited capacity for the redeemed multitudes. Its wall is of jasper; the city itself of pure gold like clear glass. The twelve foundations are garnished with precious stones — jasper, sapphire, chalcedony, emerald, sardonyx, sardius, chrysolite, beryl, topaz, chrysoprasus, jacinth, amethyst — each bearing the name of an apostle. The twelve gates are twelve pearls; each gate a single pearl. The street of the city is pure gold, as if transparent. There is no Temple in it — for the Lord God Almighty and the Lamb are the Temple. Nothing unclean shall enter it, nor any abomination or lie — only those written in the Lamb's book of life. Hebrews 11:10 says Abraham looked for this city which hath foundations, whose builder and maker is God.",
+    verse:'"And the city had no need of the sun, neither of the moon, to shine in it: for the glory of God did lighten it, and the Lamb is the light thereof." — Revelation 21:23 (KJV)',
+  },
+  {
+    id:24, phase:"eternity", icon:"🌊", year:"Eternal State",
+    title:"The River of Life, The Tree of Life & Eternal Glory",
+    ref:"Revelation 22:1–5; Revelation 22:12–13; Genesis 3:22–24",
+    summary:"A pure river of water of life, clear as crystal, flows from the throne of God and of the Lamb through the middle of the great street of the city. On either side of the river stands the Tree of Life, bearing twelve manner of fruits and yielding her fruit every month — its leaves for the healing of the nations. There shall be no more curse; His servants shall serve Him and shall see His face; His name shall be in their foreheads; and they shall reign for ever and ever. What was lost in Eden is fully restored — and infinitely more — in the eternal state.",
+    detail:"In Eden, man was driven from the Tree of Life lest he eat and live for ever in his fallen state (Genesis 3:22–24). In the eternal state, the Tree of Life is fully restored and freely available to the redeemed — twelve manner of fruits, a new fruit each month, its leaves for the healing of the nations. The river of water of life — clear as crystal — flows from the throne of God and the Lamb, echoing Ezekiel's vision of water flowing from the Temple (Ezekiel 47). There shall be no more curse — the great reversal of the fall is complete. His servants shall serve Him: they shall see His face — that beatific vision denied to Moses ('No man shall see me, and live' — Exodus 33:20) is now the eternal portion of every believer. His name shall be in their foreheads. There shall be no night there; they need no candle nor light of the sun, for the Lord God giveth them light. And they shall reign for ever and ever. Jesus adds: 'Behold, I come quickly; and my reward is with me, to give every man according as his work shall be. I am Alpha and Omega, the beginning and the end, the first and the last.' The whole of Scripture from Genesis to Revelation reaches its glorious consummation: God with man, the curse removed, death abolished, and the redeemed reigning in eternal joy and glory with their Lord.",
+    verse:'"And there shall be no more curse: but the throne of God and of the Lamb shall be in it; and his servants shall serve him: And they shall see his face; and his name shall be in their foreheads...and they shall reign for ever and ever." — Revelation 22:3–5 (KJV)',
+  },
+];
+
+function App() {
+  const [selected, setSelected] = React.useState(null);
+  const [filter, setFilter] = React.useState("all");
+
+  const filtered = filter === "all" ? events : events.filter(e => e.phase === filter);
+  const visiblePhases = phases.filter(p => filter === "all" || filter === p.id);
+
+  return (
+    <div style={{ fontFamily:"'Georgia','Times New Roman',serif", background:"linear-gradient(160deg,#1a120b 0%,#2c1a0e 40%,#1a120b 100%)", minHeight:"100vh", color:"#f0e6d3" }}>
+      <div style={{ maxWidth:800, margin:"0 auto", padding:"44px 20px 70px" }}>
+
+        {/* Header */}
+        <div style={{ textAlign:"center", marginBottom:44 }}>
+          <div style={{ fontSize:12, letterSpacing:6, color:"#c9a96e", textTransform:"uppercase", marginBottom:10 }}>
+            KJV Bible Study · Pre-Millennial
+          </div>
+          <h1 style={{ fontSize:"clamp(26px,4.5vw,44px)", fontWeight:"normal", color:"#f5deb3", margin:"0 0 8px", letterSpacing:1, lineHeight:1.2, textShadow:"0 2px 20px rgba(197,143,70,0.4)" }}>
+            Prophecy of the End Times
+          </h1>
+          <div style={{ color:"#a07850", fontSize:15, fontStyle:"italic", lineHeight:1.6 }}>
+            From the Signs of the Last Days to the New Heaven & New Earth
+          </div>
+          <div style={{ fontSize:12, color:"#7a5830", marginTop:5, letterSpacing:1 }}>
+            Daniel · Matthew 24 · 1 Thessalonians · 2 Thessalonians · Revelation
+          </div>
+          <div style={{ width:80, height:1, background:"linear-gradient(90deg,transparent,#c9a96e,transparent)", margin:"18px auto 0" }}/>
+          <div style={{ marginTop:14, padding:"10px 20px", background:"rgba(197,143,70,0.08)", border:"1px solid rgba(197,143,70,0.2)", borderRadius:8, display:"inline-block", fontSize:12, color:"#9a7845", fontStyle:"italic", maxWidth:520, lineHeight:1.6 }}>
+            Based on the Bible Presbyterian pre-millennial understanding of Scripture
+          </div>
+        </div>
+
+        {/* Legend */}
+        <div style={{ display:"flex", flexWrap:"wrap", gap:8, justifyContent:"center", marginBottom:16 }}>
+          {phases.map(p => (
+            <div key={p.id} style={{ display:"flex", alignItems:"center", gap:6, background:"rgba(255,255,255,0.04)", borderRadius:20, padding:"4px 12px", fontSize:11, color:"#d4b896" }}>
+              <div style={{ width:8, height:8, borderRadius:"50%", background:p.color }}/>
+              {p.label}
+            </div>
+          ))}
+        </div>
+
+        {/* Phase filters */}
+        <div style={{ display:"flex", flexWrap:"wrap", gap:8, justifyContent:"center", marginBottom:38 }}>
+          <button onClick={()=>setFilter("all")} style={{
+            padding:"5px 16px", borderRadius:20, cursor:"pointer", fontSize:12, fontFamily:"sans-serif", letterSpacing:1,
+            border:`1px solid ${filter==="all"?"#c9a96e":"rgba(197,143,70,0.3)"}`,
+            background: filter==="all"?"rgba(201,169,110,0.15)":"rgba(255,255,255,0.03)",
+            color: filter==="all"?"#c9a96e":"#8a6a40",
+          }}>All Events</button>
+          {phases.map(p => (
+            <button key={p.id} onClick={()=>setFilter(p.id)} style={{
+              padding:"5px 13px", borderRadius:20, cursor:"pointer", fontSize:11, fontFamily:"sans-serif",
+              border:`1px solid ${filter===p.id?p.color:"rgba(197,143,70,0.2)"}`,
+              background: filter===p.id?p.color+"22":"rgba(255,255,255,0.03)",
+              color: filter===p.id?p.color:"#8a6a40",
+            }}>{p.label}</button>
+          ))}
+        </div>
+
+        {/* Timeline */}
+        <div style={{ position:"relative" }}>
+          <div style={{ position:"absolute", left:28, top:0, bottom:0, width:2, background:"linear-gradient(180deg,transparent,#c9a96e 5%,#c9a96e 95%,transparent)" }}/>
+
+          {visiblePhases.map(phase => {
+            const phaseEvents = filtered.filter(e => e.phase === phase.id);
+            if (!phaseEvents.length) return null;
+            return (
+              <div key={phase.id}>
+                <div style={{ marginLeft:52, marginTop: filter==="all"?30:4, marginBottom:10, display:"flex", alignItems:"center", gap:10 }}>
+                  <div style={{ height:1, flex:1, background:`linear-gradient(90deg,${phase.color}80,transparent)` }}/>
+                  <div style={{ fontSize:10, letterSpacing:4, textTransform:"uppercase", color:phase.color, fontFamily:"sans-serif", whiteSpace:"nowrap" }}>{phase.label}</div>
+                  <div style={{ width:16, height:1, background:`${phase.color}40` }}/>
+                </div>
+
+                {phaseEvents.map(ev => {
+                  const isSelected = selected === ev.id;
+                  return (
+                    <div key={ev.id} style={{ position:"relative", marginBottom:8 }}>
+                      <div style={{
+                        position:"absolute", left:20, top:22, width:18, height:18, borderRadius:"50%",
+                        background: isSelected ? phase.color : "#1a120b",
+                        border:`2px solid ${phase.color}`,
+                        boxShadow: isSelected ? `0 0 12px ${phase.color}` : `0 0 6px ${phase.color}60`,
+                        zIndex:2, transition:"all 0.2s",
+                      }}/>
+
+                      <div onClick={()=>setSelected(isSelected ? null : ev.id)} style={{
+                        marginLeft:52,
+                        background: isSelected ? "rgba(255,255,255,0.07)" : "rgba(255,255,255,0.04)",
+                        border:`1px solid ${isSelected ? phase.color : "rgba(197,143,70,0.18)"}`,
+                        borderRadius:10, padding:"14px 18px", cursor:"pointer",
+                        transition:"all 0.25s ease",
+                        boxShadow: isSelected ? "0 4px 24px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.05)" : "none",
+                      }}>
+                        <div style={{ display:"flex", alignItems:"flex-start", gap:12 }}>
+                          <div style={{ fontSize:24, lineHeight:1, flexShrink:0, marginTop:3 }}>{ev.icon}</div>
+                          <div style={{ flex:1 }}>
+                            <div style={{ display:"flex", alignItems:"center", gap:8, flexWrap:"wrap", marginBottom:4 }}>
+                              <span style={{ fontSize:10, letterSpacing:3, textTransform:"uppercase", color:phase.color, fontFamily:"sans-serif" }}>{ev.year}</span>
+                              <span style={{ fontSize:10, background:phase.color+"25", color:phase.color, padding:"1px 9px", borderRadius:10, fontFamily:"sans-serif" }}>{ev.ref}</span>
+                            </div>
+                            <div style={{ fontSize:17, fontWeight:"bold", color:"#f5deb3", marginBottom:6 }}>{ev.title}</div>
+                            <div style={{ fontSize:13.5, color:"#b89a78", lineHeight:1.75 }}>{ev.summary}</div>
+                          </div>
+                          <div style={{ color:"#c9a96e", fontSize:18, flexShrink:0, transform:isSelected?"rotate(180deg)":"rotate(0)", transition:"transform 0.25s" }}>▾</div>
+                        </div>
+
+                        {isSelected && (
+                          <div className="fade-in" style={{ marginTop:16, paddingTop:16, borderTop:"1px solid rgba(197,143,70,0.2)" }}>
+                            <p style={{ fontSize:14.5, color:"#d4b896", lineHeight:1.85, margin:"0 0 16px", textAlign:"justify" }}>{ev.detail}</p>
+                            <div style={{ background:"rgba(0,0,0,0.3)", borderLeft:`3px solid ${phase.color}`, padding:"12px 16px", borderRadius:"0 8px 8px 0" }}>
+                              <div style={{ fontSize:13.5, fontStyle:"italic", color:"#e8d5b8", lineHeight:1.8 }}>{ev.verse}</div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
+
+        <div style={{ textAlign:"center", marginTop:52, color:"#6b4f35", fontSize:12, fontStyle:"italic", lineHeight:1.8 }}>
+          Tap any event to expand details &amp; scripture · Filter by phase above<br/>
+          <span style={{ color:"#4a3020" }}>24 prophetic events · Pre-Millennial · KJV</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App/>);
+  </script>
+</body>
+</html>
