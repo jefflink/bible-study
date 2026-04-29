@@ -6,7 +6,8 @@
       "testament": "OT",
       "chapters": [
         { "id": "1", "title": "Chapter 1" },
-        { "id": "2", "title": "Chapter 2" }
+        { "id": "2", "title": "Chapter 2" },
+        { "id": "2", "title": "Chapter 3" }
       ]
     },
     {
