@@ -37,6 +37,12 @@
       "description": "An interactive chronological overview of key biblical events."
     },
     {
+      "id": "jesus-timeline",
+      "title": "The Life of Jesus Christ",
+      "href": "data/interactive/jesus-timeline.html",
+      "description": "An chronological overview of the life of Jesus and his ministry."
+    },
+    {
       "id": "moses-timeline",
       "title": "Moses Exodus Event Timeline",
       "href": "data/interactive/moses-timeline.html",

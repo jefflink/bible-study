@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Life of Jesus Christ – KJV Bible Study</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: linear-gradient(160deg, #1a120b 0%, #2c1a0e 40%, #1a120b 100%);
+      min-height: 100vh;
+      color: #f0e6d3;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-in { animation: fadeIn 0.25s ease; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #1a120b; }
+    ::-webkit-scrollbar-thumb { background: #5a3e1b; border-radius: 3px; }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+
+const phases = [
+  { id:"early",    label:"Early Life",          color:"#c9a96e" },
+  { id:"ministry", label:"Galilean Ministry",    color:"#7eb8d4" },
+  { id:"miracles", label:"Miracles & Teaching",  color:"#7ec49a" },
+  { id:"journey",  label:"Journey to Jerusalem", color:"#d4956e" },
+  { id:"passion",  label:"Passion Week",         color:"#c0554a" },
+  { id:"risen",    label:"Resurrection & Glory", color:"#b89fd4" },
+];
+
+const phaseMap = Object.fromEntries(phases.map(p => [p.id, p]));
+
+const events = [
+  {
+    id:1, phase:"early", icon:"⭐", year:"~4 BC",
+    title:"The Annunciation & Virgin Birth",
+    ref:"Luke 1:26–38; Matthew 1:18–25",
+    summary:"The angel Gabriel appears to the virgin Mary in Nazareth, announcing that she will conceive the Son of the Highest by the Holy Ghost. Joseph, her betrothed, is likewise visited in a dream and instructed to name the child Jesus, fulfilling Isaiah's ancient prophecy of a virgin-born son, Immanuel — God with us.",
+    detail:"The angel Gabriel is sent to a virgin named Mary in Nazareth of Galilee, betrothed to Joseph. He tells her she will conceive and bear a son named Jesus, who will be called the Son of the Highest and reign over the house of Jacob forever. Mary submits: 'Behold the handmaid of the Lord.' Joseph, troubled at her pregnancy, is visited by an angel in a dream confirming the child is of the Holy Ghost and is to fulfil Isaiah's prophecy of a virgin-born son, Immanuel — 'God with us.'",
+    verse:'"And the angel said unto her, Fear not, Mary: for thou hast found favour with God. And, behold, thou shalt conceive in thy womb, and bring forth a son, and shalt call his name JESUS." — Luke 1:30–31 (KJV)',
+  },
+  {
+    id:2, phase:"early", icon:"🌟", year:"~4 BC",
+    title:"Birth in Bethlehem & The Shepherds",
+    ref:"Luke 2:1–20",
+    summary:"A Roman census brings Joseph and Mary to Bethlehem, where Jesus is born and laid in a manger, there being no room in the inn. An angel appears to shepherds in the nearby fields and a multitude of the heavenly host fills the night sky with praise — the shepherds hasten to find the child and spread the glad news abroad.",
+    detail:"Caesar Augustus decrees a census, bringing Joseph and Mary to Bethlehem, city of David. There being no room in the inn, Jesus is born and laid in a manger. In the fields nearby, an angel of the Lord appears to shepherds and the glory of the Lord shines around them. The angel announces the Saviour's birth. A multitude of the heavenly host praise God: 'Glory to God in the highest, and on earth peace, good will toward men.' The shepherds hasten to Bethlehem, find the babe, and spread the word abroad.",
+    verse:'"For unto you is born this day in the city of David a Saviour, which is Christ the Lord. And this shall be a sign unto you; Ye shall find the babe wrapped in swaddling clothes, lying in a manger." — Luke 2:11–12 (KJV)',
+  },
+  {
+    id:3, phase:"early", icon:"👑", year:"~4 BC",
+    title:"The Wise Men & Flight to Egypt",
+    ref:"Matthew 2:1–23",
+    summary:"Magi from the East follow a star to Jerusalem seeking the King of the Jews and present the young child Jesus with gifts of gold, frankincense, and myrrh. Warned in a dream not to return to Herod, they depart another way — while Joseph is warned by an angel to flee into Egypt, escaping Herod's furious massacre of all male children under two in Bethlehem.",
+    detail:"Wise men from the East arrive in Jerusalem asking where the King of the Jews is born, for they have seen His star. King Herod, alarmed, sends them to Bethlehem. The star leads them to the young child Jesus and they present gifts: gold, frankincense, and myrrh. Warned in a dream not to return to Herod, they depart another way. Joseph is warned by an angel to flee to Egypt. Herod, furious, commands all male children under two in Bethlehem to be slain. After Herod's death, the family returns and settles in Nazareth.",
+    verse:'"And when they were come into the house, they saw the young child with Mary his mother, and fell down, and worshipped him: and when they had opened their treasures, they presented unto him gifts; gold, and frankincense, and myrrh." — Matthew 2:11 (KJV)',
+  },
+  {
+    id:4, phase:"early", icon:"🕍", year:"~8 AD",
+    title:"Jesus at the Temple — Age Twelve",
+    ref:"Luke 2:41–52",
+    summary:"When Jesus is twelve, His parents travel to Jerusalem for Passover and return to find Him missing. After three days of searching they discover Him in the Temple sitting among the doctors of the law, hearing and questioning them to the astonishment of all. When Mary reproves Him, He answers calmly: 'Wist ye not that I must be about my Father's business?'",
+    detail:"Every year Joseph and Mary travel to Jerusalem for Passover. When Jesus is twelve, on the return journey they discover He is missing. After three days of searching, they find Him in the Temple, sitting among the doctors of the law, both hearing them and asking them questions. All who heard Him were astonished at His understanding and answers. When Mary reproves Him, Jesus replies: 'Wist ye not that I must be about my Father's business?' He returns with them to Nazareth and increases in wisdom and stature, and in favour with God and man.",
+    verse:'"And he said unto them, How is it that ye sought me? wist ye not that I must be about my Father\'s business?" — Luke 2:49 (KJV)',
+  },
+  {
+    id:5, phase:"ministry", icon:"🕊️", year:"~27 AD",
+    title:"Baptism by John the Baptist",
+    ref:"Matthew 3:13–17; Mark 1:9–11",
+    summary:"Jesus travels from Galilee to be baptised by John in the Jordan, insisting it must be done to fulfil all righteousness. As He comes up out of the water the heavens open, the Spirit descends upon Him as a dove, and the Father's voice declares from heaven: 'This is my beloved Son, in whom I am well pleased' — publicly inaugurating His earthly ministry.",
+    detail:"John the Baptist is baptising in the Jordan River, preaching repentance. Jesus comes from Galilee to be baptised. John hesitates, saying he has need to be baptised of Jesus, but Jesus insists: 'Suffer it to be so now: for thus it becometh us to fulfil all righteousness.' When Jesus comes up out of the water, the heavens open, the Spirit of God descends like a dove, and a voice from heaven declares: 'This is my beloved Son, in whom I am well pleased.' This public inauguration marks the beginning of His ministry.",
+    verse:'"And lo a voice from heaven, saying, This is my beloved Son, in whom I am well pleased." — Matthew 3:17 (KJV)',
+  },
+  {
+    id:6, phase:"ministry", icon:"🌵", year:"~27 AD",
+    title:"Temptation in the Wilderness",
+    ref:"Matthew 4:1–11; Luke 4:1–13",
+    summary:"Led by the Spirit into the wilderness, Jesus fasts forty days and nights before Satan approaches with three temptations — to turn stones to bread, to cast Himself from the Temple pinnacle, and to receive all the kingdoms of the world in exchange for worship. Jesus repels each assault with the written Word of God, and Satan departs; angels then come and minister to Him.",
+    detail:"The Spirit leads Jesus into the wilderness for 40 days, during which He fasts. Satan comes to tempt Him three times: (1) to turn stones to bread — Jesus: 'Man shall not live by bread alone, but by every word that proceedeth out of the mouth of God'; (2) to cast Himself from the Temple pinnacle — Jesus: 'Thou shalt not tempt the Lord thy God'; (3) offering all the kingdoms of the world in exchange for worship — Jesus: 'Thou shalt worship the Lord thy God, and him only shalt thou serve.' Satan departs, and angels come and minister to Jesus.",
+    verse:'"Then saith Jesus unto him, Get thee hence, Satan: for it is written, Thou shalt worship the Lord thy God, and him only shalt thou serve." — Matthew 4:10 (KJV)',
+  },
+  {
+    id:7, phase:"ministry", icon:"🎣", year:"~27 AD",
+    title:"The First Disciples Are Called",
+    ref:"Matthew 4:18–22; John 1:35–51",
+    summary:"Walking by the Sea of Galilee, Jesus calls Simon Peter and Andrew from their nets — 'Follow me, and I will make you fishers of men' — and they leave immediately. James and John likewise leave their boat and their father. Philip is then called, and he finds Nathanael, who doubts any good thing can come from Nazareth — until Jesus reveals He had seen him under the fig tree, and Nathanael confesses: 'Thou art the Son of God; thou art the King of Israel.'",
+    detail:"Walking by the Sea of Galilee, Jesus sees two brothers — Simon called Peter and Andrew — casting their nets. He calls: 'Follow me, and I will make you fishers of men.' They immediately leave their nets and follow. He then calls James and John, the sons of Zebedee, who leave their boat and their father. Philip is called next, and he finds Nathanael, who doubts: 'Can there any good thing come out of Nazareth?' Jesus declares He had seen Nathanael under the fig tree before Philip called him. Nathanael confesses: 'Thou art the Son of God; thou art the King of Israel.'",
+    verse:'"And he saith unto them, Follow me, and I will make you fishers of men. And they straightway left their nets, and followed him." — Matthew 4:19–20 (KJV)',
+  },
+  {
+    id:8, phase:"miracles", icon:"🍷", year:"~27 AD",
+    title:"First Miracle — Water into Wine at Cana",
+    ref:"John 2:1–11",
+    summary:"At a wedding feast in Cana of Galilee the wine runs out and Mary brings the matter to Jesus. He commands the servants to fill six stone water pots to the brim and draw out for the governor of the feast — the water has become wine of surpassing quality. This, the first of His miracles, manifested His glory and caused His disciples to believe on Him.",
+    detail:"Jesus, His mother, and His disciples attend a wedding in Cana of Galilee. The wine runs out. Mary tells the servants to do whatever Jesus says. Jesus commands them to fill six stone water pots to the brim — each holding two or three firkins. He then says: 'Draw out now, and bear unto the governor of the feast.' The water has become wine, and the master of the feast praises its quality, noting that the best wine has been kept until last. This beginning of miracles manifested His glory, and His disciples believed on Him.",
+    verse:'"This beginning of miracles did Jesus in Cana of Galilee, and manifested forth his glory; and his disciples believed on him." — John 2:11 (KJV)',
+  },
+  {
+    id:9, phase:"miracles", icon:"⛰️", year:"~28 AD",
+    title:"The Sermon on the Mount",
+    ref:"Matthew 5–7",
+    summary:"Ascending a mountain with His disciples and a great multitude, Jesus delivers the foundational teaching of the Kingdom of God — opening with the eight Beatitudes, raising the standard of the Law beyond outward observance to the condition of the heart, and teaching the Lord's Prayer. He closes with the parable of the house built upon rock, and the crowd is astonished: 'He taught them as one having authority.'",
+    detail:"Jesus goes up a mountain and teaches the multitudes. He opens with the Beatitudes: 'Blessed are the poor in spirit... Blessed are the meek... Blessed are the pure in heart: for they shall see God.' He raises the standard of the Law — not abolishing it but fulfilling it — to the level of the heart. He teaches the Lord's Prayer (Matthew 6:9–13) and warns against judging others and false prophets. He closes with the parable of the wise man who builds on rock versus the foolish man who builds on sand. 'The people were astonished at his doctrine: for he taught them as one having authority.'",
+    verse:'"Blessed are the pure in heart: for they shall see God. Blessed are the peacemakers: for they shall be called the children of God." — Matthew 5:8–9 (KJV)',
+  },
+  {
+    id:10, phase:"miracles", icon:"🤲", year:"~28–29 AD",
+    title:"Healings & Raising the Dead",
+    ref:"Matthew 8–9; Luke 7; John 11",
+    summary:"Throughout His ministry Jesus heals the leper, the centurion's servant, the paralytic let down through a roof, and the man born blind — and raises both the widow of Nain's son and Lazarus of Bethany from the dead, the latter after four days in the tomb. Standing before the sealed cave Jesus weeps, then cries with a loud voice: 'Lazarus, come forth!' — and the dead man walks out still bound in his grave clothes.",
+    detail:"Jesus heals a leper (Matthew 8), the centurion's servant — whose faith He marvels at (Matthew 8:5–13) — Peter's mother-in-law, and a paralytic let down through a roof. He raises the widow of Nain's son (Luke 7:11–17) and restores sight to two blind men. Most gloriously, He raises Lazarus after four days in the tomb (John 11). Standing before the sealed cave, He weeps — 'Jesus wept' (John 11:35), the shortest verse in Scripture — then cries: 'Lazarus, come forth!' Lazarus walks out still bound in grave clothes.",
+    verse:'"Jesus said unto her, I am the resurrection, and the life: he that believeth in me, though he were dead, yet shall he live." — John 11:25 (KJV)',
+  },
+  {
+    id:11, phase:"miracles", icon:"🐟", year:"~29 AD",
+    title:"Feeding the 5,000",
+    ref:"Matthew 14:13–21; John 6:1–14",
+    summary:"In a desert place a great multitude follows Jesus and the hour grows late; the disciples find among them only five loaves and two small fishes brought by a young boy. Jesus takes them, looks up to heaven, blesses and breaks them, and distributes them to the entire company — all five thousand men, beside women and children, eat and are filled, and twelve baskets of fragments are gathered up afterward.",
+    detail:"A great multitude follows Jesus into a desert place. Evening comes and the disciples urge Him to send the people away to buy food. Jesus says: 'They need not depart; give ye them to eat.' Only five loaves and two fishes can be found — brought by a young boy. Jesus takes them, looks up to heaven, blesses and breaks them, and the disciples distribute to the multitude. All five thousand men — plus women and children — eat and are filled. Twelve baskets of fragments are gathered up. The people declare: 'This is of a truth that prophet that should come into the world.'",
+    verse:'"And they did all eat, and were filled: and they took up of the fragments that remained twelve baskets full." — Matthew 14:20 (KJV)',
+  },
+  {
+    id:12, phase:"miracles", icon:"🌊", year:"~29 AD",
+    title:"Walking on Water",
+    ref:"Matthew 14:22–33",
+    summary:"In the fourth watch of the night the disciples labour alone on the Sea of Galilee against contrary winds when Jesus comes to them walking upon the water. Peter steps out at His word and walks on the sea — until he heeds the wind and begins to sink, crying 'Lord, save me!' Jesus catches him: 'O thou of little faith, wherefore didst thou doubt?' The disciples worship: 'Of a truth thou art the Son of God.'",
+    detail:"After the feeding of the 5,000, Jesus sends the disciples ahead by boat and goes up a mountain alone to pray. In the fourth watch of the night, the boat is tossed by waves. Jesus walks on the water toward them. They are terrified, thinking it a ghost. Jesus says: 'Be of good cheer; it is I; be not afraid.' Peter asks to come to Him on the water — and does walk, until he looks at the wind and begins to sink, crying: 'Lord, save me!' Jesus catches him: 'O thou of little faith, wherefore didst thou doubt?' They worship: 'Of a truth thou art the Son of God.'",
+    verse:'"And immediately Jesus stretched forth his hand, and caught him, and said unto him, O thou of little faith, wherefore didst thou doubt?" — Matthew 14:31 (KJV)',
+  },
+  {
+    id:13, phase:"miracles", icon:"✨", year:"~29 AD",
+    title:"The Transfiguration",
+    ref:"Matthew 17:1–9; Mark 9:2–9; Luke 9:28–36",
+    summary:"On a high mountain apart, Jesus is transfigured before Peter, James, and John — His face shining as the sun and His raiment white as the light. Moses and Elijah appear and speak with Him in glory, while a bright cloud overshadows them and the Father's voice declares: 'This is my beloved Son, in whom I am well pleased; hear ye him.' The disciples fall on their faces in great fear, and when they rise they see only Jesus.",
+    detail:"Jesus takes Peter, James, and John up a high mountain apart. There He is transfigured before them — His face shines as the sun and His raiment becomes white as the light. Moses and Elijah appear, talking with Him. Peter, overwhelmed, offers to build three tabernacles. A bright cloud overshadows them and a voice declares: 'This is my beloved Son, in whom I am well pleased; hear ye him.' The disciples fall on their faces in great fear. Jesus touches them: 'Arise, and be not afraid.' When they look up, they see only Jesus.",
+    verse:'"And was transfigured before them: and his face did shine as the sun, and his raiment was white as the light." — Matthew 17:2 (KJV)',
+  },
+  {
+    id:14, phase:"journey", icon:"🛤️", year:"~29–30 AD",
+    title:"Jesus Steadfastly Sets His Face to Jerusalem",
+    ref:"Luke 9:51; John 7–10",
+    summary:"As the appointed hour draws near, Jesus steadfastly sets His face toward Jerusalem, knowing full well what awaits Him there. Along the way He teaches in the Temple courts, declares 'I am the light of the world' and 'I and my Father are one,' and heals a man born blind on the Sabbath — while the officers sent to arrest Him return empty-handed, confessing: 'Never man spake like this man.'",
+    detail:"As the time of His death approaches, Jesus 'steadfastly set his face to go to Jerusalem' (Luke 9:51). He attends the Feast of Tabernacles in Jerusalem, teaching openly in the Temple. Officers sent to arrest Him return empty-handed: 'Never man spake like this man.' He declares: 'I am the light of the world' (John 8:12) and heals a man born blind on the Sabbath (John 9), provoking fury from the Pharisees. In Solomon's porch He declares: 'I and my Father are one' (John 10:30) — and they take up stones to stone Him.",
+    verse:'"And it came to pass, when the time was come that he should be received up, he stedfastly set his face to go to Jerusalem." — Luke 9:51 (KJV)',
+  },
+  {
+    id:15, phase:"journey", icon:"🧎", year:"~30 AD",
+    title:"Blind Bartimaeus & Zacchaeus",
+    ref:"Luke 18:35–43; Luke 19:1–10",
+    summary:"Near Jericho, blind Bartimaeus cries out persistently above the rebukes of the crowd, and at a single word from Jesus his sight is immediately restored. In the city itself, Zacchaeus the chief tax collector climbs a sycamore tree to see Jesus above the press; Jesus calls him down and dines at his house — and as Zacchaeus repents and makes fourfold restitution, Jesus declares: 'This day is salvation come to this house...For the Son of man is come to seek and to save that which was lost.'",
+    detail:"Near Jericho, blind Bartimaeus cries out repeatedly: 'Thou son of David, have mercy on me!' The crowd rebukes him but he cries louder. Jesus stops: 'What wilt thou that I shall do unto thee?' He replies: 'Lord, that I may receive my sight.' Jesus: 'Receive thy sight: thy faith hath saved thee.' In Jericho, Zacchaeus — a chief tax collector, short in stature — climbs a sycamore tree to see Jesus. Jesus calls him down: 'To day I must abide at thy house.' Zacchaeus repents and restores fourfold what he defrauded. Jesus declares: 'This day is salvation come to this house...For the Son of man is come to seek and to save that which was lost.'",
+    verse:'"For the Son of man is come to seek and to save that which was lost." — Luke 19:10 (KJV)',
+  },
+  {
+    id:16, phase:"passion", icon:"🌿", year:"~30 AD",
+    title:"The Triumphal Entry into Jerusalem",
+    ref:"Matthew 21:1–11; John 12:12–19",
+    summary:"Jesus rides into Jerusalem on a donkey as the multitudes spread their garments and palm branches across the road, crying 'Hosanna to the Son of David: Blessed is he that cometh in the name of the Lord!' All Jerusalem is stirred and asks who this is, while the Pharisees despair among themselves: 'Behold, the world is gone after him.' The entry fulfils Zechariah's prophecy of the meek King coming upon an ass.",
+    detail:"Jesus sends two disciples to fetch a donkey's colt, fulfilling Zechariah 9:9. He rides into Jerusalem as the multitudes spread their garments and palm branches in the road, crying: 'Hosanna to the Son of David: Blessed is he that cometh in the name of the Lord; Hosanna in the highest!' All Jerusalem is stirred, asking who this is. The Pharisees say among themselves: 'Behold, the world is gone after him.' Jesus enters the Temple, surveys all things, and returns to Bethany for the night.",
+    verse:'"Hosanna to the Son of David: Blessed is he that cometh in the name of the Lord; Hosanna in the highest." — Matthew 21:9 (KJV)',
+  },
+  {
+    id:17, phase:"passion", icon:"🏛️", year:"~30 AD",
+    title:"Cleansing the Temple",
+    ref:"Matthew 21:12–17",
+    summary:"Jesus enters the Temple courts and drives out all those who buy and sell, overturning the tables of the moneychangers and the seats of those selling doves, declaring: 'My house shall be called the house of prayer; but ye have made it a den of thieves.' He then heals the blind and lame who come to Him there, while children cry Hosanna — and the chief priests and scribes are consumed with indignation.",
+    detail:"Jesus enters the Temple and drives out all those who buy and sell, overturning the tables of the moneychangers and the seats of those selling doves. He declares: 'It is written, My house shall be called the house of prayer; but ye have made it a den of thieves.' The blind and lame come to Him in the Temple and He heals them. Children cry: 'Hosanna to the Son of David!' The chief priests and scribes are enraged. Jesus quotes Psalm 8:2: 'Out of the mouth of babes and sucklings thou hast perfected praise.'",
+    verse:'"My house shall be called the house of prayer; but ye have made it a den of thieves." — Matthew 21:13 (KJV)',
+  },
+  {
+    id:18, phase:"passion", icon:"🍞", year:"~30 AD",
+    title:"The Last Supper & The Lord's Supper Instituted",
+    ref:"Matthew 26:17–30; Luke 22:14–20; John 13–17",
+    summary:"On the night before His crucifixion Jesus gathers with the twelve for a final Passover meal, first humbling Himself to wash their feet. He announces that one will betray Him — Judas departs into the night. He then takes bread and the cup and institutes the Lord's Supper as a perpetual memorial of His body and blood, comforts the disciples with the promise of His Father's house, and closes with the great High Priestly Prayer of John 17.",
+    detail:"Jesus gathers with the twelve on the night before His crucifixion. He takes a basin and towel and washes the disciples' feet, astonishing Peter. He announces that one will betray Him — it is Judas, who departs into the night. Jesus takes bread, blesses it, breaks it: 'This is my body which is given for you: this do in remembrance of me.' Likewise the cup: 'This cup is the new testament in my blood.' He comforts them: 'Let not your heart be troubled...I go to prepare a place for you' (John 14:1–3). He then prays the High Priestly Prayer of John 17.",
+    verse:'"This do in remembrance of me...This cup is the new testament in my blood, which is shed for you." — Luke 22:19–20 (KJV)',
+  },
+  {
+    id:19, phase:"passion", icon:"🌑", year:"~30 AD",
+    title:"Gethsemane & The Betrayal",
+    ref:"Matthew 26:36–56; Luke 22:39–53",
+    summary:"In the Garden of Gethsemane Jesus prays in such agony that His sweat falls as great drops of blood, crying: 'O my Father, if it be possible, let this cup pass from me: nevertheless not as I will, but as thou wilt.' Three times He prays; three times He returns to find the disciples sleeping. Judas then arrives with a multitude bearing swords and staves and betrays Jesus with a kiss — whereupon all the disciples forsake Him and flee.",
+    detail:"Jesus goes to Gethsemane with His disciples. He takes Peter, James, and John deeper in, saying: 'My soul is exceeding sorrowful, even unto death.' He falls on His face: 'O my Father, if it be possible, let this cup pass from me: nevertheless not as I will, but as thou wilt.' Three times He prays; three times He returns to find the disciples sleeping. Luke records His sweat 'as it were great drops of blood.' Judas arrives with a great multitude bearing swords and staves and betrays Jesus with a kiss. Jesus is seized; Peter strikes the servant's ear; Jesus heals it. All the disciples flee.",
+    verse:'"O my Father, if it be possible, let this cup pass from me: nevertheless not as I will, but as thou wilt." — Matthew 26:39 (KJV)',
+  },
+  {
+    id:20, phase:"passion", icon:"⚖️", year:"~30 AD",
+    title:"Trials Before Caiaphas & Pontius Pilate",
+    ref:"Matthew 26:57–27:26; Luke 23:1–25; John 18:28–19:16",
+    summary:"Jesus is condemned for blasphemy before the high priest Caiaphas after declaring Himself the Son of man coming in the clouds of heaven; Peter, warming himself in the courtyard below, denies Him three times before the cock crows. Before both Pilate and Herod no fault is found in Him — yet the crowd demands Barabbas, and Pilate, washing his hands before the multitude, yields to their clamour: 'I am innocent of the blood of this just person.'",
+    detail:"Jesus is brought before the high priest Caiaphas where false witnesses testify. Jesus declares: 'Thou shalt see the Son of man sitting on the right hand of power, and coming in the clouds of heaven.' He is condemned for blasphemy. Peter denies Him three times before the cock crows. Judas, remorseful, throws thirty pieces of silver into the Temple and hangs himself. Before Pilate, who finds no fault, and before Herod, who mocks Him, the crowd demands Barabbas. Pilate washes his hands: 'I am innocent of the blood of this just person.'",
+    verse:'"When Pilate saw that he could prevail nothing...he took water, and washed his hands before the multitude, saying, I am innocent of the blood of this just person." — Matthew 27:24 (KJV)',
+  },
+  {
+    id:21, phase:"passion", icon:"✝️", year:"~30 AD",
+    title:"The Crucifixion",
+    ref:"Matthew 27:27–56; Luke 23:26–49; John 19:17–37",
+    summary:"Scourged, crowned with thorns, and mocked as King of the Jews, Jesus is crucified at Golgotha between two thieves. From the sixth to the ninth hour darkness covers all the land; He speaks seven times from the cross — forgiving His executioners, receiving the repentant thief into paradise, and at last commending His spirit to the Father. At His death the Temple veil tears from top to bottom, the earth quakes, and the centurion confesses: 'Truly this was the Son of God.'",
+    detail:"Jesus is scourged, crowned with thorns, and mocked before being led to Golgotha. He is crucified with a sign above His head: 'THIS IS JESUS THE KING OF THE JEWS.' From the cross He speaks seven times: 'Father, forgive them' (Luke 23:34); to the repentant thief: 'To day shalt thou be with me in paradise' (Luke 23:43); to Mary and John (John 19:26–27); 'Eli, Eli, lama sabachthani?' (Matthew 27:46); 'I thirst' (John 19:28); 'It is finished' (John 19:30); 'Father, into thy hands I commend my spirit' (Luke 23:46). Darkness covers the land from noon to 3 PM. The Temple veil tears in two; the earth quakes. The centurion declares: 'Truly this was the Son of God.'",
+    verse:'"Father, forgive them; for they know not what they do." — Luke 23:34 (KJV)',
+  },
+  {
+    id:22, phase:"passion", icon:"🪨", year:"~30 AD",
+    title:"The Burial",
+    ref:"Matthew 27:57–66; John 19:38–42",
+    summary:"Joseph of Arimathaea goes boldly to Pilate and begs the body of Jesus; Nicodemus brings a hundred pounds of myrrh and aloes, and together they lay the body in a new tomb with the spices, wrapped in linen. The chief priests, recalling Jesus' words about rising on the third day, obtain a Roman guard from Pilate and seal the tomb — not knowing they are securing the stage for the greatest event in all of history.",
+    detail:"Joseph of Arimathaea, a rich man and secret disciple, goes boldly to Pilate and begs the body of Jesus. Nicodemus brings a mixture of myrrh and aloes, about a hundred pounds. They wrap the body in linen with the spices and lay it in a new hewn tomb in a garden near Golgotha. A great stone is rolled to the door. The chief priests and Pharisees ask Pilate for a guard, saying: 'Sir, we remember that that deceiver said, After three days I will rise again.' The tomb is sealed and soldiers keep watch.",
+    verse:'"And he rolled a great stone to the door of the sepulchre, and departed." — Matthew 27:60 (KJV)',
+  },
+  {
+    id:23, phase:"risen", icon:"🌅", year:"~30 AD",
+    title:"The Resurrection",
+    ref:"Matthew 28:1–10; Luke 24:1–12; John 20:1–18",
+    summary:"In the early morning of the first day of the week an angel descends in a great earthquake, rolls back the stone, and declares to the women who have come: 'He is not here: for he is risen, as he said.' Peter and John find only the linen grave clothes within the empty tomb. Mary Magdalene, weeping outside, is called by name by the risen Jesus Himself — and becomes the first witness of the resurrection.",
+    detail:"In the early morning of the first day of the week, Mary Magdalene and other women come to the tomb. There is a great earthquake — an angel of the Lord descends and rolls back the stone; his countenance is like lightning. The guards become as dead men. The angel tells the women: 'He is not here: for he is risen, as he said. Come, see the place where the Lord lay.' Peter and John run to the tomb — the linen clothes lie there but Jesus is gone. Mary Magdalene, weeping outside, supposes the risen Jesus to be the gardener until He speaks her name: 'Mary.' She cries: 'Rabboni!'",
+    verse:'"He is not here: for he is risen, as he said. Come, see the place where the Lord lay." — Matthew 28:6 (KJV)',
+  },
+  {
+    id:24, phase:"risen", icon:"🚶", year:"~30 AD",
+    title:"The Road to Emmaus",
+    ref:"Luke 24:13–35",
+    summary:"Two disciples walking to Emmaus are joined by the risen Jesus, Whom they do not recognise. He expounds all the scriptures concerning Himself as they walk — their hearts burning within them — and at table in Emmaus takes bread, blesses and breaks it, whereupon their eyes are opened and they know Him. He vanishes; they return to Jerusalem at once to tell the eleven.",
+    detail:"Two disciples walk to a village called Emmaus, seven miles from Jerusalem, discussing the crucifixion. Jesus draws near and walks with them, but their eyes are holden. He expounds all the scriptures concerning Himself: 'Ought not Christ to have suffered these things, and to enter into his glory?' At supper, Jesus takes bread, blesses and breaks it — and their eyes are opened and they know Him. He vanishes. They say: 'Did not our heart burn within us, while he talked with us by the way, and while he opened to us the scriptures?' They return immediately to Jerusalem.",
+    verse:'"Did not our heart burn within us, while he talked with us by the way, and while he opened to us the scriptures?" — Luke 24:32 (KJV)',
+  },
+  {
+    id:25, phase:"risen", icon:"🙌", year:"~30 AD",
+    title:"Appearances, Restoration of Peter & The Great Commission",
+    ref:"Matthew 28:16–20; John 20–21; 1 Corinthians 15:3–8",
+    summary:"Over forty days the risen Jesus appears to His disciples — behind locked doors, on the shore of Tiberias where He serves them bread and fish, and on a Galilean mountain where He restores Peter with three-fold questioning. He appears to above five hundred brethren at once before giving the Great Commission: 'Go ye therefore, and teach all nations' — with the abiding promise: 'I am with you alway, even unto the end of the world.'",
+    detail:"Jesus appears to the ten disciples behind locked doors: 'Peace be unto you.' He shows His hands and side. Thomas, absent, doubts — a week later Jesus appears again and invites Thomas to touch His wounds: 'My Lord and my God!' On the Sea of Tiberias, Jesus appears at dawn and serves bread and fish; He restores Peter three times: 'Lovest thou me?... Feed my sheep.' On a mountain in Galilee He gives the Great Commission: 'All power is given unto me in heaven and in earth. Go ye therefore, and teach all nations.' Paul records He appeared to above 500 brethren at once (1 Corinthians 15:6).",
+    verse:'"Go ye therefore, and teach all nations, baptizing them in the name of the Father, and of the Son, and of the Holy Ghost...and, lo, I am with you alway, even unto the end of the world." — Matthew 28:19–20 (KJV)',
+  },
+  {
+    id:26, phase:"risen", icon:"☁️", year:"~30 AD",
+    title:"The Ascension into Heaven",
+    ref:"Luke 24:50–53; Acts 1:9–11",
+    summary:"Leading His disciples out to Bethany, Jesus lifts up His hands and blesses them — and as He does so He is parted from them and carried up into heaven, a cloud receiving Him out of their sight. Two angels in white apparel stand beside the disciples and promise: 'This same Jesus, which is taken up from you into heaven, shall so come in like manner.' The disciples return to Jerusalem with great joy.",
+    detail:"Forty days after His resurrection, Jesus leads the disciples out to Bethany. He lifts up His hands and blesses them. While He blesses them, He is parted from them and carried up into heaven — a cloud receives Him out of their sight. Two men in white apparel stand by: 'Ye men of Galilee, why stand ye gazing up into heaven? this same Jesus, which is taken up from you into heaven, shall so come in like manner as ye have seen him go into heaven.' The disciples return to Jerusalem with great joy, continuing daily in the Temple, praising and blessing God.",
+    verse:'"This same Jesus, which is taken up from you into heaven, shall so come in like manner as ye have seen him go into heaven." — Acts 1:11 (KJV)',
+  },
+];
+
+function App() {
+  const [selected, setSelected] = React.useState(null);
+  const [filter, setFilter] = React.useState("all");
+
+  const filtered = filter === "all" ? events : events.filter(e => e.phase === filter);
+  const visiblePhases = phases.filter(p => filter === "all" || filter === p.id);
+
+  return (
+    <div style={{ fontFamily:"'Georgia','Times New Roman',serif", background:"linear-gradient(160deg,#1a120b 0%,#2c1a0e 40%,#1a120b 100%)", minHeight:"100vh", color:"#f0e6d3" }}>
+      <div style={{ maxWidth:780, margin:"0 auto", padding:"44px 20px 70px" }}>
+
+        {/* Header */}
+        <div style={{ textAlign:"center", marginBottom:44 }}>
+          <div style={{ fontSize:12, letterSpacing:6, color:"#c9a96e", textTransform:"uppercase", marginBottom:10 }}>
+            KJV Bible Study
+          </div>
+          <h1 style={{ fontSize:"clamp(28px,5vw,46px)", fontWeight:"normal", color:"#f5deb3", margin:"0 0 8px", letterSpacing:1, lineHeight:1.2, textShadow:"0 2px 20px rgba(197,143,70,0.4)" }}>
+            The Life of Jesus Christ
+          </h1>
+          <div style={{ color:"#a07850", fontSize:15, fontStyle:"italic" }}>
+            From His Nativity to His Ascension into Glory
+          </div>
+          <div style={{ fontSize:13, color:"#7a5830", marginTop:4 }}>Matthew · Mark · Luke · John · Acts</div>
+          <div style={{ width:80, height:1, background:"linear-gradient(90deg,transparent,#c9a96e,transparent)", margin:"18px auto 0" }}/>
+        </div>
+
+        {/* Legend dots */}
+        <div style={{ display:"flex", flexWrap:"wrap", gap:8, justifyContent:"center", marginBottom:16 }}>
+          {phases.map(p => (
+            <div key={p.id} style={{ display:"flex", alignItems:"center", gap:6, background:"rgba(255,255,255,0.04)", borderRadius:20, padding:"4px 12px", fontSize:12, color:"#d4b896" }}>
+              <div style={{ width:8, height:8, borderRadius:"50%", background:p.color }}/>
+              {p.label}
+            </div>
+          ))}
+        </div>
+
+        {/* Phase filters */}
+        <div style={{ display:"flex", flexWrap:"wrap", gap:8, justifyContent:"center", marginBottom:38 }}>
+          <button onClick={()=>setFilter("all")} style={{
+            padding:"5px 16px", borderRadius:20, cursor:"pointer", fontSize:12, fontFamily:"sans-serif", letterSpacing:1,
+            border:`1px solid ${filter==="all"?"#c9a96e":"rgba(197,143,70,0.3)"}`,
+            background: filter==="all"?"rgba(201,169,110,0.15)":"rgba(255,255,255,0.03)",
+            color: filter==="all"?"#c9a96e":"#8a6a40",
+          }}>All Events</button>
+          {phases.map(p => (
+            <button key={p.id} onClick={()=>setFilter(p.id)} style={{
+              padding:"5px 14px", borderRadius:20, cursor:"pointer", fontSize:12, fontFamily:"sans-serif", letterSpacing:0.5,
+              border:`1px solid ${filter===p.id?p.color:"rgba(197,143,70,0.2)"}`,
+              background: filter===p.id?p.color+"22":"rgba(255,255,255,0.03)",
+              color: filter===p.id?p.color:"#8a6a40",
+            }}>{p.label}</button>
+          ))}
+        </div>
+
+        {/* Timeline */}
+        <div style={{ position:"relative" }}>
+          <div style={{ position:"absolute", left:28, top:0, bottom:0, width:2, background:"linear-gradient(180deg,transparent,#c9a96e 5%,#c9a96e 95%,transparent)" }}/>
+
+          {visiblePhases.map(phase => {
+            const phaseEvents = filtered.filter(e => e.phase === phase.id);
+            if (!phaseEvents.length) return null;
+            return (
+              <div key={phase.id}>
+                {/* Phase divider */}
+                <div style={{ marginLeft:52, marginTop: filter==="all"?28:4, marginBottom:10, display:"flex", alignItems:"center", gap:10 }}>
+                  <div style={{ height:1, flex:1, background:`linear-gradient(90deg,${phase.color}80,transparent)` }}/>
+                  <div style={{ fontSize:10, letterSpacing:5, textTransform:"uppercase", color:phase.color, fontFamily:"sans-serif", whiteSpace:"nowrap" }}>{phase.label}</div>
+                  <div style={{ width:16, height:1, background:`${phase.color}40` }}/>
+                </div>
+
+                {phaseEvents.map(ev => {
+                  const isSelected = selected === ev.id;
+                  return (
+                    <div key={ev.id} style={{ position:"relative", marginBottom:8 }}>
+                      <div style={{
+                        position:"absolute", left:20, top:22, width:18, height:18, borderRadius:"50%",
+                        background: isSelected ? phase.color : "#1a120b",
+                        border:`2px solid ${phase.color}`,
+                        boxShadow: isSelected ? `0 0 12px ${phase.color}` : `0 0 6px ${phase.color}60`,
+                        zIndex:2, transition:"all 0.2s",
+                      }}/>
+
+                      <div onClick={()=>setSelected(isSelected ? null : ev.id)} style={{
+                        marginLeft:52,
+                        background: isSelected ? "rgba(255,255,255,0.07)" : "rgba(255,255,255,0.04)",
+                        border:`1px solid ${isSelected ? phase.color : "rgba(197,143,70,0.18)"}`,
+                        borderRadius:10, padding:"14px 18px", cursor:"pointer",
+                        transition:"all 0.25s ease",
+                        boxShadow: isSelected ? "0 4px 24px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.05)" : "none",
+                      }}>
+                        <div style={{ display:"flex", alignItems:"flex-start", gap:12 }}>
+                          <div style={{ fontSize:24, lineHeight:1, flexShrink:0, marginTop:3 }}>{ev.icon}</div>
+                          <div style={{ flex:1 }}>
+                            <div style={{ display:"flex", alignItems:"center", gap:8, flexWrap:"wrap", marginBottom:4 }}>
+                              <span style={{ fontSize:10, letterSpacing:3, textTransform:"uppercase", color:phase.color, fontFamily:"sans-serif" }}>{ev.year}</span>
+                              <span style={{ fontSize:10, background:phase.color+"25", color:phase.color, padding:"1px 9px", borderRadius:10, fontFamily:"sans-serif" }}>{ev.ref}</span>
+                            </div>
+                            <div style={{ fontSize:17, fontWeight:"bold", color:"#f5deb3", marginBottom:6 }}>{ev.title}</div>
+                            <div style={{ fontSize:13.5, color:"#b89a78", lineHeight:1.75 }}>{ev.summary}</div>
+                          </div>
+                          <div style={{ color:"#c9a96e", fontSize:18, flexShrink:0, transform:isSelected?"rotate(180deg)":"rotate(0)", transition:"transform 0.25s" }}>▾</div>
+                        </div>
+
+                        {isSelected && (
+                          <div className="fade-in" style={{ marginTop:16, paddingTop:16, borderTop:"1px solid rgba(197,143,70,0.2)" }}>
+                            <p style={{ fontSize:14.5, color:"#d4b896", lineHeight:1.85, margin:"0 0 16px", textAlign:"justify" }}>{ev.detail}</p>
+                            <div style={{ background:"rgba(0,0,0,0.3)", borderLeft:`3px solid ${phase.color}`, padding:"12px 16px", borderRadius:"0 8px 8px 0" }}>
+                              <div style={{ fontSize:13.5, fontStyle:"italic", color:"#e8d5b8", lineHeight:1.8 }}>{ev.verse}</div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
+
+        <div style={{ textAlign:"center", marginTop:52, color:"#6b4f35", fontSize:12, fontStyle:"italic", lineHeight:1.8 }}>
+          Tap any event to expand details &amp; scripture · Filter by phase above<br/>
+          <span style={{ color:"#4a3020" }}>26 key events · Nativity to Ascension · KJV</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App/>);
+  </script>
+</body>
+</html>
